@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THE BOB Game & Coffee | Dijital Menü</title>
+<meta name="description" content="THE BOB Game & Coffee dijital menüsü: kahveler, soğuk içecekler, tostlar, hamburgerler, tatlılar ve oyunlar.">
+<meta name="theme-color" content="#111013">
+<meta name="format-detection" content="telephone=no">
+
+<!-- Paylaşım önizlemesi (WhatsApp, Instagram vb.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="THE BOB Game & Coffee | Menü">
+<meta property="og:description" content="Kahveni al, kolu kap. Tüm menü ve oyun fiyatları burada.">
+<meta property="og:locale" content="tr_TR">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111013'/%3E%3Ctext x='32' y='46' font-family='Arial Black,Arial' font-weight='900' font-size='40' text-anchor='middle' fill='%23ff8a1e'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://images.pexels.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#111013;
+    --surface:#1a181d;
+    --surface-2:#232027;
+    --line:#2c2830;
+    --text:#f5f1ea;
+    --muted:#a09aa6;
+    --faint:#6f6975;
+    --accent:#ff8a1e;
+    --accent-ink:#1d0e00;
+    --ok:#3ddc84;
+    --radius:18px;
+    --sticky-h:118px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(var(--sticky-h) + 8px);-webkit-text-size-adjust:100%}
+  html{background:var(--bg)}
+  body{
+    background:transparent;color:var(--text);
+    font-family:"Manrope",system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;min-height:100vh;
+    -webkit-tap-highlight-color:transparent;
+  }
+  button{font:inherit;color:inherit}
+  .wrap{max-width:680px;margin:0 auto;padding:0 16px}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:relative;overflow:hidden;text-align:center;
+    padding:calc(40px + env(safe-area-inset-top)) 0 24px;
+    background:
+      radial-gradient(520px 260px at 50% -60px, rgba(255,138,30,.35), transparent 70%);
+  }
+  .grain{position:absolute;inset:0;pointer-events:none;opacity:.10;
+    background-image:radial-gradient(var(--text) 1px, transparent 1px);
+    background-size:16px 16px;mask-image:linear-gradient(#000,transparent 80%);
+    -webkit-mask-image:linear-gradient(#000,transparent 80%)}
+  .logo{
+    filter:drop-shadow(0 6px 24px rgba(255,120,0,.45));
+    position:relative;display:inline-flex;align-items:center;
+    font-family:"Bungee",sans-serif;font-size:clamp(56px,17vw,84px);
+    line-height:1;color:var(--accent);letter-spacing:2px;
+    text-shadow:3px 3px 0 #fff;
+  }
+  .logo .the{
+    writing-mode:vertical-rl;transform:rotate(180deg);
+    font-size:.25em;letter-spacing:1px;margin-right:6px;text-shadow:2px 2px 0 #fff;
+  }
+  .logo-sub{
+    margin-top:10px;font-weight:800;letter-spacing:.34em;font-size:12.5px;
+    text-transform:uppercase;padding-left:.34em
+  }
+  .logo-sub span{color:var(--accent)}
+  .tagline{margin-top:10px;color:var(--muted);font-size:14px}
+
+  .promo{
+    position:relative;margin:20px auto 0;max-width:460px;text-align:left;
+    display:flex;gap:12px;align-items:center;
+    background:linear-gradient(135deg,#ff8a1e,#ff6a00);color:var(--accent-ink);
+    border-radius:var(--radius);padding:14px 16px;
+    box-shadow:0 10px 30px -12px rgba(255,120,0,.6);
+  }
+  .promo-ico{font-size:26px;flex:none}
+  .promo b{display:block;font-size:15px;font-weight:800}
+  .promo small{display:block;font-size:12.5px;font-weight:600;opacity:.85;margin-top:2px}
+  .live{
+    margin-left:auto;flex:none;display:none;align-items:center;gap:6px;
+    background:var(--accent-ink);color:#fff;font-size:11px;font-weight:800;
+    padding:5px 9px;border-radius:999px;letter-spacing:.04em
+  }
+  .live i{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:pulse 1.4s infinite}
+  .promo.is-live .live{display:flex}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(61,220,132,.7)}70%{box-shadow:0 0 0 7px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+
+  /* Hızlı erişim */
+  .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+  .q{
+    background:rgba(26,24,29,.7);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:14px;
+    padding:12px 4px 10px;cursor:pointer;text-align:center;transition:transform .12s,border-color .12s
+  }
+  .q:active{transform:scale(.96)}
+  .q:hover{border-color:var(--accent)}
+  .q span{display:block;font-size:22px;line-height:1}
+  .q em{display:block;font-style:normal;font-size:12px;font-weight:700;margin-top:6px;color:var(--muted)}
+
+  /* ---------- STICKY BAR ---------- */
+  .sticky{
+    position:sticky;top:0;z-index:20;
+    background:rgba(17,16,19,.72);backdrop-filter:saturate(1.4) blur(14px);
+    -webkit-backdrop-filter:saturate(1.4) blur(14px);
+    border-bottom:1px solid var(--line);padding:10px 0 8px;
+  }
+  .search{
+    display:flex;align-items:center;gap:10px;
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:12px;padding:0 6px 0 14px;height:44px;
+  }
+  .search:focus-within{border-color:var(--accent)}
+  .search svg{flex:none;color:var(--muted)}
+  .search input{
+    flex:1;min-width:0;background:none;border:0;outline:0;color:var(--text);
+    font:500 16px "Manrope",sans-serif;
+  }
+  .search input::placeholder{color:var(--faint)}
+  .search input::-webkit-search-cancel-button{display:none}
+  .clear{
+    display:none;flex:none;width:32px;height:32px;border:0;border-radius:8px;
+    background:var(--surface-2);cursor:pointer;font-size:15px;color:var(--muted)
+  }
+  .search.has-text .clear{display:block}
+  .tabs{
+    display:flex;gap:6px;overflow-x:auto;margin:8px -16px 0;padding:0 16px 2px;
+    scrollbar-width:none;scroll-behavior:smooth
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    flex:none;border:1px solid var(--line);background:transparent;
+    font-weight:700;font-size:13px;padding:7px 13px;border-radius:999px;
+    cursor:pointer;white-space:nowrap;color:var(--muted);transition:background .15s,color .15s
+  }
+  .tab.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .result-info{display:none;font-size:13px;color:var(--muted);margin-top:8px}
+
+  /* ---------- MENU ---------- */
+  main{padding:8px 0 28px;min-height:50vh}
+  section.cat{margin-top:28px}
+  .cat-head{display:flex;align-items:center;gap:10px;margin:0 2px 10px}
+  .cat-ico{
+    width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+    background:rgba(255,138,30,.14);border:1px solid rgba(255,138,30,.25);font-size:18px;flex:none
+  }
+  .cat-title{font-family:"Bungee",sans-serif;font-size:19px;letter-spacing:.4px;font-weight:400}
+  .cat-count{margin-left:auto;font-size:12px;color:var(--faint);font-weight:700}
+  .cat-note{
+    display:flex;gap:8px;align-items:flex-start;
+    background:rgba(255,138,30,.10);border:1px solid rgba(255,138,30,.25);color:#ffc28a;
+    font-size:13px;font-weight:600;padding:10px 12px;border-radius:12px;margin-bottom:10px
+  }
+  .list{background:rgba(26,24,29,.78);border:1px solid rgba(255,255,255,.07);box-shadow:0 12px 30px -18px rgba(0,0,0,.8);border-radius:var(--radius);overflow:hidden}
+  .row{display:flex;gap:14px;align-items:center;padding:12px 14px;border-top:1px solid rgba(255,255,255,.06)}
+  .row:first-child{border-top:0}
+  .row-body{flex:1;min-width:0}
+  .row-top{display:flex;align-items:baseline;gap:8px}
+  .thumb{
+    flex:none;width:60px;height:60px;border-radius:14px;overflow:hidden;
+    display:grid;place-items:center;
+    background:radial-gradient(circle at 50% 38%, var(--tint,rgba(255,138,30,.3)), rgba(0,0,0,.25) 78%), #232027;
+    border:1px solid rgba(255,255,255,.07);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .thumb svg{width:46px;height:46px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.45))}
+  .thumb.photo{position:relative;padding:0;border:1px solid rgba(255,255,255,.12);cursor:zoom-in;width:80px;height:80px;border-radius:16px;background:#f3efe9}
+  .thumb.photo svg{position:absolute;inset:0;margin:auto}
+  .thumb.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
+  .thumb.photo img.ok{opacity:1}
+  /* Büyük fotoğraf */
+  .lb{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+    background:rgba(8,7,9,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:24px}
+  .lb.show{display:flex}
+  .lb img{max-width:min(92vw,520px);max-height:70vh;border-radius:20px;box-shadow:0 20px 60px -10px rgba(0,0,0,.8);object-fit:cover}
+  .lb p{font-weight:800;font-size:18px}
+  .lb p span{color:var(--accent);margin-left:8px}
+  .lb button{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px;width:42px;height:42px;border-radius:50%;border:0;
+    background:var(--surface-2);color:var(--text);font-size:18px;cursor:pointer}
+  .row:active .thumb{transform:scale(.97)}
+  .name{font-weight:700;font-size:15.5px;line-height:1.3}
+  .dots{flex:1;min-width:16px;border-bottom:1.5px dotted #3d3843;transform:translateY(-4px)}
+  .price{font-weight:800;font-size:15.5px;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .price s{color:var(--faint);font-weight:600;font-size:13px;margin-right:6px}
+  .kcal{display:flex;align-items:center;gap:5px;margin-top:5px;font-size:12px;font-weight:700;color:#c9c2cf;font-variant-numeric:tabular-nums}
+  .kcal svg{width:12px;height:12px;fill:#ff8a1e;flex:none}
+  .kcal span{color:var(--faint);font-weight:600}
+  .desc{color:var(--muted);font-size:13.5px;line-height:1.45;margin-top:3px}
+  .tag{
+    display:inline-block;vertical-align:middle;margin-left:6px;
+    font-size:10.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+    padding:2px 7px;border-radius:6px;background:var(--accent);color:var(--accent-ink)
+  }
+  mark{background:rgba(255,138,30,.28);color:inherit;border-radius:3px;padding:0 1px}
+  .empty{display:none;text-align:center;padding:56px 16px;color:var(--muted)}
+  .empty span{display:block;font-size:40px;margin-bottom:10px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:rgba(10,9,11,.6);border-top:1px solid var(--line);padding:28px 0 calc(36px + env(safe-area-inset-bottom));text-align:center}
+  .links{display:flex;gap:10px;margin-bottom:14px}
+  .btn{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+    height:48px;border-radius:14px;text-decoration:none;
+    font-weight:800;font-size:14px;color:var(--text);
+    background:var(--surface);border:1px solid var(--line);
+  }
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .wifi{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;
+    background:var(--surface);border:1px dashed #3d3843;border-radius:14px;
+    padding:12px 14px;margin-bottom:14px;font-size:14px
+  }
+  .wifi b{color:var(--accent)}
+  .copy{
+    flex:none;border:0;background:var(--surface-2);border-radius:10px;
+    padding:8px 12px;font-weight:700;font-size:12.5px;cursor:pointer
+  }
+  .info{color:var(--muted);font-size:13px;line-height:1.8}
+  .legal{color:var(--faint);font-size:11.5px;margin-top:14px;line-height:1.6}
+  .sign{margin-top:16px;font-size:11px;color:var(--faint);letter-spacing:.08em}
+  .sign a{color:var(--muted);text-decoration:none;font-weight:700}
+
+  /* Yukarı çık */
+  .top{
+    position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:30;
+    width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;
+    background:var(--accent);color:var(--accent-ink);font-size:20px;font-weight:800;
+    box-shadow:0 8px 24px -6px rgba(0,0,0,.6);
+    opacity:0;transform:translateY(12px);pointer-events:none;transition:.2s
+  }
+  .top.show{opacity:1;transform:none;pointer-events:auto}
+  .toast{
+    position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom));z-index:40;
+    transform:translate(-50%,10px);opacity:0;transition:.2s;pointer-events:none;
+    background:var(--text);color:var(--bg);font-weight:700;font-size:13px;
+    padding:9px 14px;border-radius:10px
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* ---------- ARKA PLAN ---------- */
+  .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--bg);pointer-events:none}
+  .bg .facets{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+  .bg .blob{
+    position:absolute;border-radius:50%;filter:blur(70px);opacity:.38;will-change:transform
+  }
+  .bg .b1{width:70vmax;height:70vmax;left:-30vmax;top:-25vmax;
+    background:radial-gradient(circle,#ff7a00 0%,transparent 65%);animation:drift1 22s ease-in-out infinite alternate}
+  .bg .b2{width:60vmax;height:60vmax;right:-28vmax;top:30vh;
+    background:radial-gradient(circle,#ff3d00 0%,transparent 65%);opacity:.22;animation:drift2 26s ease-in-out infinite alternate}
+  .bg .b3{width:55vmax;height:55vmax;left:-15vmax;bottom:-30vmax;
+    background:radial-gradient(circle,#ffb347 0%,transparent 65%);opacity:.18;animation:drift3 30s ease-in-out infinite alternate}
+  .bg .icons{
+    position:absolute;inset:-60px;opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg transform='translate(18 22) rotate(-12)'%3E%3Cpath d='M10 8h28a10 10 0 0 1 9 14l-4 9a6 6 0 0 1-10 1l-3-4H18l-3 4a6 6 0 0 1-10-1l-4-9A10 10 0 0 1 10 8z'/%3E%3Cpath d='M13 16v6M10 19h6'/%3E%3Ccircle cx='33' cy='17' r='1.6'/%3E%3Ccircle cx='38' cy='21' r='1.6'/%3E%3C/g%3E%3Cg transform='translate(110 96) rotate(10)'%3E%3Cpath d='M4 10h26v12a12 12 0 0 1-12 12h-2A12 12 0 0 1 4 22z'/%3E%3Cpath d='M30 14h4a5 5 0 0 1 0 10h-4'/%3E%3Cpath d='M12 2c-2 2 2 4 0 6M20 2c-2 2 2 4 0 6'/%3E%3C/g%3E%3Cg transform='translate(120 18) rotate(18)'%3E%3Crect x='0' y='0' width='26' height='26' rx='5'/%3E%3Ccircle cx='7' cy='7' r='1.8'/%3E%3Ccircle cx='13' cy='13' r='1.8'/%3E%3Ccircle cx='19' cy='19' r='1.8'/%3E%3C/g%3E%3Cg transform='translate(26 118) rotate(-20)'%3E%3Cellipse cx='12' cy='16' rx='9' ry='13'/%3E%3Cpath d='M12 4c-4 6 4 18 0 24'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:180px 180px;animation:pan 60s linear infinite;
+    mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 85%);
+    -webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 85%)
+  }
+  .bg .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,transparent 40%,rgba(0,0,0,.65) 100%)}
+  @keyframes drift1{to{transform:translate(18vw,12vh) scale(1.1)}}
+  @keyframes drift2{to{transform:translate(-14vw,-18vh) scale(1.15)}}
+  @keyframes drift3{to{transform:translate(20vw,-10vh) scale(.9)}}
+  @keyframes pan{to{transform:translate(180px,180px)}}
+
+
+  /* ================= EFEKTLER ================= */
+  /* Açılış ekranı */
+  .splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#0d0c0f;
+    transition:opacity .5s ease, visibility .5s ease}
+  .splash.hide{opacity:0;visibility:hidden}
+  .splash-in{text-align:center}
+  .splash .sl{display:inline-flex;font-family:"Bungee",sans-serif;font-size:64px;color:var(--accent);text-shadow:3px 3px 0 #fff}
+  .splash .sl b{display:inline-block;font-weight:400;opacity:0;transform:translateY(40px) scale(.6) rotate(-8deg);
+    animation:harfGel .55s cubic-bezier(.2,1.4,.4,1) forwards}
+  .splash .sl b:nth-child(2){animation-delay:.09s}.splash .sl b:nth-child(3){animation-delay:.18s}
+  .splash .ss{margin-top:10px;font-weight:800;letter-spacing:.34em;font-size:11px;color:var(--muted);opacity:0;animation:fadeUp .5s .45s forwards}
+  .splash .bar{width:120px;height:3px;border-radius:3px;background:#2a262e;margin:18px auto 0;overflow:hidden}
+  .splash .bar i{display:block;height:100%;width:40%;border-radius:3px;background:var(--accent);animation:yukle 1s ease-in-out infinite}
+  @keyframes harfGel{to{opacity:1;transform:none}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes yukle{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
+
+  /* Kaydırma ilerleme çubuğu */
+  .progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);
+    background:linear-gradient(90deg,#ffb347,#ff8a1e,#ff5a00);box-shadow:0 0 10px rgba(255,138,30,.8)}
+
+  /* Logo parlaması */
+  .logo{position:relative}
+  .logo .shine{position:absolute;right:0;top:0;pointer-events:none;color:transparent;text-shadow:none;
+    background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.95) 50%,transparent 65%);
+    background-size:250% 100%;background-position:150% 0;-webkit-background-clip:text;background-clip:text;
+    animation:parla 4.5s ease-in-out 1.6s infinite}
+  @keyframes parla{0%{background-position:150% 0}35%,100%{background-position:-60% 0}}
+
+  /* Giriş animasyonları */
+  .intro{opacity:0;transform:translateY(16px)}
+  body.ready .intro{animation:fadeUp .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--d,0) * 90ms + 80ms)}
+  body.ready .logo.intro{animation-name:logoGel}
+  @keyframes logoGel{from{opacity:0;transform:translateY(16px) scale(.9);filter:blur(6px) drop-shadow(0 6px 24px rgba(255,120,0,.45))}
+    to{opacity:1;transform:none;filter:drop-shadow(0 6px 24px rgba(255,120,0,.45))}}
+
+  /* Kampanya kartı: dönen ışık çerçevesi + parıltı */
+  .promo{overflow:hidden;isolation:isolate}
+  .promo::before{content:"";position:absolute;inset:-60%;z-index:-2;
+    background:conic-gradient(from 0deg,#ff6a00,#ffd08a,#ff6a00,#ff3d00,#ff6a00);animation:don 6s linear infinite}
+  .promo::after{content:"";position:absolute;inset:2px;z-index:-1;border-radius:calc(var(--radius) - 2px);
+    background:linear-gradient(135deg,#ff8a1e,#ff6a00)}
+  .promo .sweep{position:absolute;top:0;bottom:0;width:40%;left:-60%;z-index:0;pointer-events:none;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);
+    animation:sweep 3.8s ease-in-out 2s infinite}
+  .promo > *{position:relative;z-index:1}
+  .promo-ico{animation:salla 3.8s ease-in-out 2s infinite;transform-origin:50% 70%}
+  @keyframes don{to{transform:rotate(1turn)}}
+  @keyframes sweep{0%{left:-60%}40%,100%{left:130%}}
+  @keyframes salla{0%,60%,100%{transform:none}66%{transform:rotate(-14deg)}72%{transform:rotate(12deg)}78%{transform:rotate(-6deg)}84%{transform:none}}
+
+  /* Hızlı erişim kutuları */
+  .q{position:relative;overflow:hidden;transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .2s,box-shadow .25s}
+  .q::after{content:"";position:absolute;inset:0;background:radial-gradient(120px 60px at 50% 120%,rgba(255,138,30,.35),transparent 70%);opacity:0;transition:opacity .25s}
+  .q:hover{transform:translateY(-3px);box-shadow:0 12px 24px -12px rgba(255,138,30,.6)}
+  .q:hover::after,.q:focus-visible::after{opacity:1}
+  .q span{transition:transform .35s cubic-bezier(.2,1.6,.4,1)}
+  .q:hover span,.q.pop span{transform:scale(1.22) rotate(-6deg)}
+
+  /* Kayan kategori göstergesi */
+  .tabs{position:relative}
+  .tab-ind{position:absolute;top:0;left:0;height:100%;border-radius:999px;z-index:0;pointer-events:none;
+    background:linear-gradient(135deg,#ffa040,#ff7a10);box-shadow:0 6px 16px -6px rgba(255,138,30,.8);
+    transition:transform .45s cubic-bezier(.2,.9,.25,1.15),width .45s cubic-bezier(.2,.9,.25,1.15);opacity:0}
+  .tab-ind.on{opacity:1}
+  .tab{position:relative;z-index:1;transition:color .3s}
+  .tabs.has-ind .tab.active{background:transparent!important;border-color:transparent!important;color:var(--accent-ink)}
+
+  /* Kategori başlığı alt çizgisi */
+  .cat-title{position:relative}
+  .cat-title::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;border-radius:2px;
+    background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:0 50%;transition:transform .8s cubic-bezier(.2,.8,.2,1) .15s}
+  section.cat.in .cat-title::after{transform:scaleX(1)}
+  .cat-ico{transition:transform .6s cubic-bezier(.2,1.6,.4,1)}
+  section.cat.in .cat-ico{animation:ikonGel .7s cubic-bezier(.2,1.6,.4,1) both}
+  @keyframes ikonGel{from{transform:scale(.4) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
+
+  /* Ürün satırlarının kayarak gelmesi */
+  .fx .row{opacity:0;transform:translateY(18px)}
+  .fx section.cat.in .row{opacity:1;transform:none;transition:opacity .55s ease, transform .6s cubic-bezier(.2,.8,.2,1);
+    transition-delay:calc(min(var(--i,0),10) * 45ms)}
+  .fx .cat-head,.fx .cat-note{opacity:0;transform:translateY(10px);transition:opacity .5s, transform .6s cubic-bezier(.2,.8,.2,1)}
+  .fx section.cat.in .cat-head,.fx section.cat.in .cat-note{opacity:1;transform:none}
+
+  /* Kart: ışıklı çerçeve + imleci takip eden parıltı */
+  .list{position:relative;isolation:isolate;
+    background:linear-gradient(180deg,rgba(32,29,36,.82),rgba(22,20,25,.82))}
+  .list::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:2;pointer-events:none;
+    background:linear-gradient(160deg,rgba(255,138,30,.55),rgba(255,255,255,.06) 30%,rgba(255,255,255,.03) 70%,rgba(255,138,30,.35));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+  .row{position:relative;overflow:hidden;transition:background .3s}
+  .row::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+    background:radial-gradient(260px 120px at var(--mx,50%) var(--my,50%),rgba(255,138,30,.12),transparent 70%)}
+  .row:hover::before{opacity:1}
+  .thumb.photo img{transition:opacity .35s, transform .6s cubic-bezier(.2,.8,.2,1)}
+  .row:hover .thumb.photo img.ok{transform:scale(1.08)}
+  .thumb.photo{box-shadow:0 8px 18px -10px rgba(0,0,0,.8);transition:transform .25s}
+  /* Dokunma dalgası */
+  .ripple{position:absolute;border-radius:50%;pointer-events:none;background:rgba(255,138,30,.28);
+    transform:scale(0);animation:dalga .6s ease-out forwards}
+  @keyframes dalga{to{transform:scale(1);opacity:0}}
+
+  /* Etiket parıltısı */
+  .tag{position:relative;overflow:hidden}
+  .tag::after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-40%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:sweep 3.2s ease-in-out infinite}
+
+  /* Fiyat vurgusu */
+  .price{transition:transform .25s}
+  .row:hover .price{transform:scale(1.06)}
+
+  /* Büyük fotoğraf açılış animasyonu */
+  .lb{display:flex!important;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+  .lb.show{opacity:1;visibility:visible}
+  .lb img{transform:scale(.85) translateY(20px);transition:transform .45s cubic-bezier(.2,1.2,.3,1)}
+  .lb.show img{transform:none}
+  .lb p{opacity:0;transform:translateY(10px);transition:opacity .35s .12s,transform .35s .12s}
+  .lb.show p{opacity:1;transform:none}
+
+  /* Yukarı çık butonu */
+  .top{transition:opacity .25s,transform .35s cubic-bezier(.2,1.4,.4,1),box-shadow .25s}
+  .top:hover{box-shadow:0 0 0 6px rgba(255,138,30,.18),0 8px 24px -6px rgba(0,0,0,.6)}
+
+  @media (hover:none){ .row:hover::before{opacity:0} .row:hover .thumb.photo img.ok{transform:none} .row:hover .price{transform:none} .q:hover{transform:none;box-shadow:none} }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="splash" id="splash" aria-hidden="true"><div class="splash-in"><div class="sl"><b>B</b><b>O</b><b>B</b></div><div class="ss">GAME AND COFFEE</div><div class="bar"><i></i></div></div></div>
+<div class="bg" aria-hidden="true"><svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,0 38,0 22,30" fill="#211e24"/><polygon points="38,0 70,0 52,24" fill="#19171c"/><polygon points="70,0 100,0 100,18 78,20" fill="#151417"/><polygon points="22,30 38,0 52,24" fill="#1e1b21"/><polygon points="0,0 22,30 0,42" fill="#1c1a1f"/><polygon points="52,24 78,20 66,48" fill="#1c1a1f"/><polygon points="78,20 100,18 100,52" fill="#242127"/><polygon points="0,42 22,30 30,62" fill="#1c1a1f"/><polygon points="22,30 52,24 30,62" fill="#211e24"/><polygon points="52,24 66,48 30,62" fill="#242127"/><polygon points="66,48 100,52 84,76" fill="#1c1a1f"/><polygon points="0,42 30,62 0,82" fill="#242127"/><polygon points="30,62 66,48 56,86" fill="#19171c"/><polygon points="66,48 84,76 56,86" fill="#1c1a1f"/><polygon points="84,76 100,52 100,100" fill="#1c1a1f"/><polygon points="0,82 30,62 24,100" fill="#151417"/><polygon points="30,62 56,86 24,100" fill="#151417"/><polygon points="56,86 84,76 70,100" fill="#1c1a1f"/><polygon points="84,76 100,100 70,100" fill="#19171c"/><polygon points="0,82 24,100 0,100" fill="#1c1a1f"/><polygon points="56,86 70,100 24,100" fill="#242127"/></svg><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="icons"></div><div class="vignette"></div></div>
+
+<header>
+  <div class="grain"></div>
+  <div class="wrap">
+    <h1 class="logo intro" style="--d:0" aria-label="The BOB"><span class="the">THE</span>BOB<span class="shine" aria-hidden="true">BOB</span></h1>
+    <div class="logo-sub intro" style="--d:1">Game <span>and</span> Coffee</div>
+    <p class="tagline intro" style="--d:2" id="tagline"></p>
+
+    <div class="promo intro" style="--d:3" id="promo">
+      <span class="sweep" aria-hidden="true"></span>
+      <div class="promo-ico">🎮</div>
+      <div><b id="promo-title"></b><small id="promo-sub"></small></div>
+      <div class="live"><i></i>ŞU AN</div>
+    </div>
+
+    <nav class="quick intro" style="--d:4" id="quick" aria-label="Hızlı erişim"></nav>
+  </div>
+</header>
+
+<div class="sticky" id="sticky">
+  <div class="wrap">
+    <label class="search" id="searchBox">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Menüde ara… (latte, burger, mojito)" autocomplete="off" enterkeyhint="search" aria-label="Menüde ara">
+      <button class="clear" id="clear" type="button" aria-label="Aramayı temizle">✕</button>
+    </label>
+    <nav class="tabs" id="tabs" aria-label="Kategoriler"></nav>
+    <p class="result-info" id="resultInfo"></p>
+  </div>
+</div>
+
+<main class="wrap" id="menu"></main>
+<div class="empty wrap" id="empty"><span>🎲</span>Aradığın ürün bulunamadı.<br>Farklı bir kelime dene.</div>
+
+<footer>
+  <div class="wrap">
+    <div class="links" id="links"></div>
+    <div class="wifi" id="wifi"></div>
+    <div class="info" id="info"></div>
+    <p class="legal" id="legal"></p>
+    <div class="sign">powered by <a href="https://instagram.com/nfc.nett" target="_blank" rel="noopener">@nfc.nett</a></div>
+  </div>
+</footer>
+
+<button class="top" id="top" type="button" aria-label="Yukarı çık">↑</button>
+<div class="toast" id="toast" role="status"></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true"><button type="button" id="lbClose" aria-label="Kapat">✕</button><img id="lbImg" alt=""><p id="lbTxt"></p></div>
+
+<script>
+/* =========================================================
+   AYARLAR — sadece bu kısmı düzenlemen yeterli
+   Boş bırakılan ("") alanlar sitede otomatik gizlenir.
+   ========================================================= */
+const AYARLAR = {
+  slogan: "Kahveni al, kolu kap.",
+  paraBirimi: "₺",
+  gorseller: true,                         // ürün görsellerini göster / gizle
+  guncelleme: "Ekim 2026",                 // menünün son güncellenme tarihi
+
+  // İndirim saati: oyunlarda belirtilen saatlerde indirimli fiyat otomatik gösterilir
+  indirim: {
+    aktif: true,
+    baslangic: 14,                          // saat 14:00
+    bitis: 17,                              // saat 17:00
+    oran: 50,                               // %50
+    kategori: "Oyunlar",
+    baslik: "Her gün 14:00 – 17:00 arası",
+    aciklama: "PlayStation ve Bilardo'da %50 indirim!",
+  },
+
+  instagram: "",                            // örn: https://instagram.com/thebobgame
+  googleYorum: "",                          // Google yorum linki
+  telefon: "",                              // örn: 0555 555 55 55
+  konum: "",                                // Google Maps linki
+  wifiAdi: "",
+  wifiSifre: "",
+  adres: "",
+  saatler: "",                              // örn: Her gün 10:00 – 02:00
+};
+
+/* Hızlı erişim kutuları: hangi kategoriye atlayacakları */
+const HIZLI = [
+  { ad:"İçecekler",  ikon:"☕", hedef:"Kahveler" },
+  { ad:"Yiyecekler", ikon:"🍔", hedef:"Tostlar" },
+  { ad:"Tatlılar",   ikon:"🍰", hedef:"Tatlılar" },
+  { ad:"Oyunlar",    ikon:"🎮", hedef:"Oyunlar" },
+];
+
+/* =========================================================
+   MENÜ
+   ad, fiyat (yoksa fiyat gösterilmez), aciklama, etiket:["BOB Özel"]
+   ========================================================= */
+const MENU = [
+  { kategori:"Kahveler", ikon:"☕", urunler:[
+    { ad:"Single Espresso", fiyat:150, resim:"px:12975714/pexels-photo-12975714.jpeg", kcal:2, por:"30 ml" },
+    { ad:"Sütlü Gold Kahve", fiyat:150, resim:"px:8674159/pexels-photo-8674159.jpeg", kcal:100, por:"250 ml" },
+    { ad:"Americano", fiyat:200, resim:"px:25482738/pexels-photo-25482738.jpeg", kcal:10, por:"350 ml" },
+    { ad:"Black Eye", fiyat:250, resim:"px:7542875/pexels-photo-7542875.jpeg", kcal:10, por:"350 ml" },
+    { ad:"Latte", fiyat:230, resim:"px:32176011/pexels-photo-32176011.jpeg", kcal:180, por:"350 ml" },
+    { ad:"Cappuccino", fiyat:230, resim:"px:39360763/pexels-photo-39360763.jpeg", kcal:120, por:"250 ml" },
+    { ad:"Flat White", fiyat:230, resim:"px:36010225/pexels-photo-36010225.jpeg", kcal:110, por:"240 ml" },
+    { ad:"Cortado", fiyat:230, resim:"px:33669195/pexels-photo-33669195.jpeg", kcal:40, por:"120 ml" },
+    { ad:"Mocha", fiyat:250, resim:"px:9823571/pexels-photo-9823571.jpeg", kcal:310, por:"350 ml" },
+    { ad:"White Mocha", fiyat:250, resim:"px:19202828/pexels-photo-19202828.jpeg", kcal:340, por:"350 ml" },
+    { ad:"Caramel Latte", fiyat:250, resim:"px:5112646/pexels-photo-5112646.jpeg", kcal:230, por:"350 ml" },
+    { ad:"Caramel Macchiato", fiyat:275, resim:"px:39829470/pexels-photo-39829470.jpeg", kcal:230, por:"350 ml" },
+    { ad:"Latte Macchiato", fiyat:230, resim:"px:6763235/pexels-photo-6763235.jpeg", kcal:180, por:"350 ml" },
+    { ad:"Filtre Kahve", fiyat:180, resim:"px:6660455/pexels-photo-6660455.jpeg", kcal:5, por:"350 ml" },
+    { ad:"Sütlü Filtre Kahve", fiyat:200, resim:"px:10186148/pexels-photo-10186148.jpeg", kcal:40, por:"350 ml" },
+  ]},
+  { kategori:"Türk Kahvesi", ikon:"🫖", urunler:[
+    { ad:"Türk Kahvesi", fiyat:150, resim:"px:23894811/pexels-photo-23894811.jpeg", kcal:7, por:"65 ml" },
+    { ad:"Double Türk Kahvesi", fiyat:200, resim:"px:39592542/pexels-photo-39592542.jpeg", kcal:14, por:"130 ml" },
+    { ad:"Sütlü Türk Kahvesi", fiyat:180, resim:"px:18055116/pexels-photo-18055116.jpeg", kcal:40, por:"80 ml" },
+    { ad:"Menengiç", fiyat:150, resim:"px:37103716/pexels-photo-37103716.jpeg", kcal:150, por:"100 ml" },
+    { ad:"Dibek", fiyat:150, resim:"px:39152139/pexels-photo-39152139.jpeg", kcal:15, por:"65 ml" },
+  ]},
+  { kategori:"Sıcak İçecekler", ikon:"🍵", urunler:[
+    { ad:"Çay", fiyat:40, resim:"px:27871035/pexels-photo-27871035.jpeg", kcal:2, por:"100 ml" },
+    { ad:"Fincan Çay", fiyat:55, resim:"px:20075994/pexels-photo-20075994.jpeg", kcal:2, por:"200 ml" },
+    { ad:"Bitki Çayları", fiyat:80, resim:"px:2752032/pexels-photo-2752032.jpeg", kcal:2, por:"250 ml" },
+    { ad:"Oralet", fiyat:50, resim:"px:4328596/pexels-photo-4328596.jpeg", kcal:40, por:"200 ml" },
+    { ad:"Kivi", fiyat:50, resim:"px:15242185/pexels-photo-15242185.jpeg", kcal:40, por:"200 ml" },
+    { ad:"Karadut", fiyat:50, resim:"px:30415956/pexels-photo-30415956.jpeg", kcal:40, por:"200 ml" },
+    { ad:"Sıcak Çikolata", fiyat:180, resim:"px:13428094/pexels-photo-13428094.jpeg", kcal:280, por:"300 ml" },
+    { ad:"Sıcak Beyaz Çikolata", fiyat:180, resim:"px:16607248/pexels-photo-16607248.jpeg", kcal:310, por:"300 ml" },
+    { ad:"Chai Tea Latte", fiyat:150, resim:"px:11833310/pexels-photo-11833310.jpeg", kcal:220, por:"300 ml" },
+    { ad:"Salep", fiyat:160, resim:"px:37146476/pexels-photo-37146476.jpeg", kcal:230, por:"250 ml" },
+    { ad:"Ballı Süt", fiyat:150, resim:"px:3772492/pexels-photo-3772492.jpeg", kcal:200, por:"250 ml" },
+    { ad:"Muzlu Süt", fiyat:100, resim:"px:11397572/pexels-photo-11397572.jpeg", kcal:250, por:"300 ml" },
+    { ad:"Çilekli Süt", fiyat:100, resim:"px:103566/pexels-photo-103566.jpeg", kcal:230, por:"300 ml" },
+  ]},
+  { kategori:"Soğuk Kahveler", ikon:"🧊", urunler:[
+    { ad:"Ice Latte", fiyat:230, resim:"px:10170269/pexels-photo-10170269.jpeg", kcal:130, por:"400 ml" },
+    { ad:"Ice Mocha", fiyat:250, resim:"px:37022836/pexels-photo-37022836.jpeg", kcal:260, por:"400 ml" },
+    { ad:"Ice White Mocha", fiyat:250, resim:"px:8605851/pexels-photo-8605851.jpeg", kcal:290, por:"400 ml" },
+    { ad:"Ice Americano", fiyat:200, resim:"px:32542050/pexels-photo-32542050.jpeg", kcal:10, por:"400 ml" },
+    { ad:"Ice Caramel Latte", fiyat:250, resim:"px:15086185/pexels-photo-15086185.jpeg", kcal:180, por:"400 ml" },
+    { ad:"Ice Caramel Macchiato", fiyat:275, resim:"px:34969154/pexels-photo-34969154.jpeg", kcal:180, por:"400 ml" },
+    { ad:"Ice Filter Coffee", fiyat:180, resim:"px:16785688/pexels-photo-16785688.jpeg", kcal:5, por:"400 ml" },
+  ]},
+  { kategori:"Frappeler", ikon:"🥤", urunler:[
+    { ad:"Klasik Frappe", fiyat:250, resim:"px:34224582/pexels-photo-34224582.jpeg", kcal:260, por:"400 ml" },
+    { ad:"Mocha Frappe", fiyat:250, resim:"px:11512983/pexels-photo-11512983.jpeg", kcal:340, por:"400 ml" },
+    { ad:"Vanilya Frappe", fiyat:250, resim:"px:13425813/pexels-photo-13425813.jpeg", kcal:310, por:"400 ml" },
+    { ad:"Karamel Frappe", fiyat:250, resim:"px:20550130/pexels-photo-20550130.jpeg", kcal:340, por:"400 ml" },
+    { ad:"Çilek Frappe", fiyat:250, resim:"px:5946658/pexels-photo-5946658.jpeg", kcal:340, por:"400 ml" },
+    { ad:"Oreo Frappe", fiyat:250, resim:"px:7091582/pexels-photo-7091582.jpeg", kcal:410, por:"400 ml" },
+    { ad:"Brownie Frappe", fiyat:250, resim:"px:31569964/pexels-photo-31569964.jpeg", kcal:450, por:"400 ml" },
+  ]},
+  { kategori:"Milkshakeler", ikon:"🍦", urunler:[
+    { ad:"Çilekli Milkshake", fiyat:230, resim:"px:3625372/pexels-photo-3625372.jpeg", kcal:420, por:"400 ml" },
+    { ad:"Vanilyalı Milkshake", fiyat:230, resim:"px:18142623/pexels-photo-18142623.jpeg", kcal:380, por:"400 ml" },
+    { ad:"Çikolatalı Milkshake", fiyat:230, resim:"px:32469289/pexels-photo-32469289.jpeg", kcal:440, por:"400 ml" },
+    { ad:"Karamelli Milkshake", fiyat:230, resim:"px:7091585/pexels-photo-7091585.jpeg", kcal:420, por:"400 ml" },
+    { ad:"Cocostar Milkshake", fiyat:230, resim:"px:29200682/pexels-photo-29200682.jpeg", kcal:500, por:"400 ml" },
+    { ad:"Muzlu Milkshake", fiyat:230, resim:"px:14994697/pexels-photo-14994697.jpeg", kcal:420, por:"400 ml" },
+    { ad:"Snickers Milkshake", fiyat:230, resim:"px:23384626/pexels-photo-23384626.jpeg", kcal:600, por:"400 ml" },
+    { ad:"Oreolu Milkshake", fiyat:230, resim:"px:8743859/pexels-photo-8743859.jpeg", kcal:530, por:"400 ml" },
+    { ad:"Kavunlu Milkshake", fiyat:230, resim:"px:5817524/pexels-photo-5817524.jpeg", kcal:400, por:"400 ml" },
+    { ad:"Brownie Milkshake", fiyat:230, resim:"px:6463656/pexels-photo-6463656.jpeg", kcal:580, por:"400 ml" },
+    { ad:"Nutella Milkshake", fiyat:230, resim:"px:8161427/pexels-photo-8161427.jpeg", kcal:550, por:"400 ml" },
+  ]},
+  { kategori:"Smoothieler", ikon:"🍓", urunler:[
+    { ad:"Çilekli Smoothie", fiyat:230, resim:"px:4051780/pexels-photo-4051780.jpeg", kcal:170, por:"400 ml" },
+    { ad:"Vanilyalı Smoothie", fiyat:230, resim:"px:28525197/pexels-photo-28525197.jpeg", kcal:250, por:"400 ml" },
+    { ad:"Mangolu Smoothie", fiyat:230, resim:"px:8620364/pexels-photo-8620364.jpeg", kcal:180, por:"400 ml" },
+    { ad:"Kavunlu Smoothie", fiyat:230, resim:"px:5817527/pexels-photo-5817527.jpeg", kcal:170, por:"400 ml" },
+    { ad:"Muzlu Smoothie", fiyat:230, resim:"px:15481508/pexels-photo-15481508.jpeg", kcal:240, por:"400 ml" },
+    { ad:"Orman Meyveli Smoothie", fiyat:230, resim:"px:4736333/pexels-photo-4736333.jpeg", kcal:160, por:"400 ml" },
+  ]},
+  { kategori:"Frozenlar", ikon:"❄️", urunler:[
+    { ad:"Karpuzlu Frozen", fiyat:230, resim:"px:39536484/pexels-photo-39536484.jpeg", kcal:160, por:"400 ml" },
+    { ad:"Kavunlu Frozen", fiyat:230, resim:"px:18664060/pexels-photo-18664060.jpeg", kcal:160, por:"400 ml" },
+    { ad:"Ananaslı Frozen", fiyat:230, resim:"px:36402328/pexels-photo-36402328.jpeg", kcal:190, por:"400 ml" },
+    { ad:"Çilekli Frozen", fiyat:230, resim:"px:17612776/pexels-photo-17612776.jpeg", kcal:180, por:"400 ml" },
+    { ad:"Mangolu Frozen", fiyat:230, resim:"px:6493405/pexels-photo-6493405.jpeg", kcal:200, por:"400 ml" },
+    { ad:"Yeşil Elmalı Frozen", fiyat:230, resim:"px:8169572/pexels-photo-8169572.jpeg", kcal:180, por:"400 ml" },
+    { ad:"Orman Meyveli Frozen", fiyat:230, resim:"px:8375241/pexels-photo-8375241.jpeg", kcal:190, por:"400 ml" },
+  ]},
+  { kategori:"Kokteyller", ikon:"🍹", urunler:[
+    { ad:"Cool Lime", fiyat:220, resim:"px:13059610/pexels-photo-13059610.jpeg", kcal:120, por:"350 ml" },
+    { ad:"Berry Hibiscus", fiyat:220, resim:"px:38293143/pexels-photo-38293143.jpeg", kcal:130, por:"350 ml" },
+    { ad:"Cosmopolitan", fiyat:275, resim:"px:11937518/pexels-photo-11937518.jpeg", kcal:150, por:"350 ml" },
+    { ad:"Blue Wave", fiyat:275, resim:"px:12419192/pexels-photo-12419192.jpeg", kcal:170, por:"350 ml" },
+    { ad:"Space Song", fiyat:275, resim:"px:28283605/pexels-photo-28283605.jpeg", kcal:170, por:"350 ml" },
+    { ad:"Cosmos", fiyat:275, resim:"px:9983818/pexels-photo-9983818.jpeg", kcal:160, por:"350 ml" },
+    { ad:"Rio Wave", fiyat:275, resim:"px:7377103/pexels-photo-7377103.jpeg", kcal:190, por:"350 ml" },
+    { ad:"Golden Bear Wave", fiyat:275, resim:"px:5946617/pexels-photo-5946617.jpeg", kcal:180, por:"350 ml" },
+    { ad:"Cool Berry Lime", fiyat:275, resim:"px:28525184/pexels-photo-28525184.jpeg", kcal:150, por:"350 ml" },
+    { ad:"Forest Wave", fiyat:275, resim:"px:8955971/pexels-photo-8955971.jpeg", kcal:160, por:"350 ml" },
+    { ad:"Sun Garden", fiyat:275, resim:"px:37646393/pexels-photo-37646393.jpeg", kcal:170, por:"350 ml" },
+    { ad:"Red Velvet", fiyat:275, resim:"px:9658825/pexels-photo-9658825.jpeg", kcal:180, por:"350 ml" },
+  ]},
+  { kategori:"Mojitolar", ikon:"🌿", urunler:[
+    { ad:"Klasik Mojito", fiyat:230, resim:"px:8375036/pexels-photo-8375036.jpeg", kcal:100, por:"400 ml" },
+    { ad:"Elmalı Mojito", fiyat:230, resim:"px:4051255/pexels-photo-4051255.jpeg", kcal:130, por:"400 ml" },
+    { ad:"Redbull Twist", fiyat:275, resim:"px:18142620/pexels-photo-18142620.jpeg", kcal:180, por:"400 ml" },
+    { ad:"Çilekli Mojito", fiyat:230, resim:"px:12049919/pexels-photo-12049919.jpeg", kcal:140, por:"400 ml" },
+    { ad:"Wild Berry Mojito", fiyat:230, resim:"px:38101015/pexels-photo-38101015.jpeg", kcal:130, por:"400 ml" },
+    { ad:"BOB Special Mojito", fiyat:300, etiket:["BOB Özel"], resim:"px:4051265/pexels-photo-4051265.jpeg", kcal:160, por:"400 ml" },
+  ]},
+  { kategori:"Limonatalar", ikon:"🍋", urunler:[
+    { ad:"Klasik Limonata", fiyat:140, resim:"px:4021977/pexels-photo-4021977.jpeg", kcal:130, por:"330 ml" },
+    { ad:"Çilekli Limonata", fiyat:150, resim:"px:102444/pexels-photo-102444.jpeg", kcal:160, por:"330 ml" },
+    { ad:"Naneli Limonata", fiyat:150, resim:"px:9146284/pexels-photo-9146284.jpeg", kcal:130, por:"330 ml" },
+    { ad:"Yeşil Elmalı Limonata", fiyat:150, resim:"px:4134387/pexels-photo-4134387.jpeg", kcal:160, por:"330 ml" },
+    { ad:"Mangolu Limonata", fiyat:150, resim:"px:7377108/pexels-photo-7377108.jpeg", kcal:160, por:"330 ml" },
+    { ad:"Orman Meyveli Limonata", fiyat:150, resim:"px:37271932/pexels-photo-37271932.jpeg", kcal:150, por:"330 ml" },
+  ]},
+  { kategori:"Soğuk Çikolata", ikon:"🍫", urunler:[
+    { ad:"Soğuk Çikolata", fiyat:200, resim:"px:33320422/pexels-photo-33320422.jpeg", kcal:320, por:"350 ml" },
+    { ad:"Beyaz Çikolata", fiyat:210, resim:"px:6341422/pexels-photo-6341422.jpeg", kcal:360, por:"350 ml" },
+    { ad:"Muzlu Çikolata", fiyat:210, resim:"px:7645803/pexels-photo-7645803.jpeg", kcal:380, por:"350 ml" },
+    { ad:"Çilekli Çikolata", fiyat:210, resim:"px:6463662/pexels-photo-6463662.jpeg", kcal:350, por:"350 ml" },
+    { ad:"Coco Street", fiyat:210, resim:"px:15149193/pexels-photo-15149193.jpeg", kcal:380, por:"350 ml" },
+  ]},
+  { kategori:"Vitamin Bar", ikon:"🍊", urunler:[
+    { ad:"Portakal Suyu", fiyat:250, resim:"px:6412586/pexels-photo-6412586.jpeg", kcal:140, por:"300 ml" },
+    { ad:"Nar Suyu", fiyat:250, resim:"px:34704679/pexels-photo-34704679.jpeg", kcal:160, por:"300 ml" },
+    { ad:"Nartakal", fiyat:225, resim:"px:8679617/pexels-photo-8679617.jpeg", kcal:150, por:"300 ml" },
+    { ad:"Ballı Muzlu Süt", fiyat:225, resim:"px:8805103/pexels-photo-8805103.jpeg", kcal:300, por:"350 ml" },
+  ]},
+  { kategori:"Soğuk İçecekler", ikon:"🥫", urunler:[
+    { ad:"Coca Cola", fiyat:130, resim:"px:4113632/pexels-photo-4113632.jpeg", kcal:139, por:"330 ml", etiket_kcal:true },
+    { ad:"Fanta", fiyat:130, resim:"px:34993951/pexels-photo-34993951.jpeg", kcal:99, por:"330 ml", etiket_kcal:true },
+    { ad:"Sprite", fiyat:130, resim:"px:20791049/pexels-photo-20791049.jpeg", kcal:43, por:"330 ml", etiket_kcal:true },
+    { ad:"Ice Tea", fiyat:130, resim:"px:36825769/pexels-photo-36825769.jpeg", kcal:63, por:"330 ml", etiket_kcal:true },
+    { ad:"Meyve Suyu", fiyat:130, resim:"px:6412582/pexels-photo-6412582.jpeg", kcal:100, por:"200 ml" },
+    { ad:"Churchill", fiyat:120, resim:"px:9996446/pexels-photo-9996446.jpeg", kcal:10, por:"250 ml" },
+    { ad:"Red Bull", fiyat:150, resim:"px:5215469/pexels-photo-5215469.jpeg", kcal:115, por:"250 ml", etiket_kcal:true },
+    { ad:"Monster", fiyat:150, resim:"px:9170101/pexels-photo-9170101.jpeg", kcal:185, por:"500 ml", etiket_kcal:true },
+    { ad:"Black Bruin", fiyat:150, resim:"px:18555421/pexels-photo-18555421.jpeg", kcal:118, por:"250 ml", etiket_kcal:true },
+    { ad:"Bağlar Gazoz", fiyat:80, resim:"px:6467798/pexels-photo-6467798.jpeg", kcal:90, por:"250 ml" },
+    { ad:"Sade Soda", fiyat:70, resim:"px:12987476/pexels-photo-12987476.jpeg", kcal:0, por:"200 ml", etiket_kcal:true },
+    { ad:"Meyveli Soda", fiyat:80, resim:"px:1412554/pexels-photo-1412554.jpeg", kcal:54, por:"200 ml", etiket_kcal:true },
+    { ad:"Su", fiyat:30, resim:"px:31012799/pexels-photo-31012799.jpeg", kcal:0, por:"500 ml", etiket_kcal:true },
+    { ad:"Ayran", fiyat:120, resim:"px:4324359/pexels-photo-4324359.jpeg", kcal:96, por:"300 ml", etiket_kcal:true },
+  ]},
+  { kategori:"Tostlar", ikon:"🥪", urunler:[
+    { ad:"Bazlama Karışık Tost", aciklama:"Patates kızartması ile servis edilir.", fiyat:300, resim:"px:35054768/pexels-photo-35054768.jpeg", kcal:1160, por:"1 porsiyon" },
+    { ad:"Kavurma Kaşar Tost", aciklama:"Bazlama ekmeğinde kavurma, dana sucuk ve kaşar. Patates kızartması ile servis edilir.", fiyat:375, resim:"px:36268517/pexels-photo-36268517.jpeg", kcal:1320, por:"1 porsiyon" },
+    { ad:"BOB Special Tost", aciklama:"Bazlama ekmeğinde kavurma, dana sucuk, kaşar ve cheddar peyniri. Patates kızartması ile servis edilir.", fiyat:400, etiket:["BOB Özel"], resim:"px:37228372/pexels-photo-37228372.jpeg", kcal:1440, por:"1 porsiyon" },
+    { ad:"Light Tost", aciklama:"Bazlama ekmeğinde beyaz peynir ve domates. Fırınlanmış patates ile servis edilir.", fiyat:250, resim:"px:25225617/pexels-photo-25225617.jpeg", kcal:640, por:"1 porsiyon" },
+  ]},
+  { kategori:"Hamburgerler", ikon:"🍔", urunler:[
+    { ad:"BOB Burger", aciklama:"%100 dana etinden 2 adet köfte, BOB sos ve soğan halkası.", fiyat:400, etiket:["BOB Özel"], resim:"px:10922927/pexels-photo-10922927.jpeg", kcal:1080, por:"1 adet" },
+    { ad:"Cheese Burger", aciklama:"%100 dana etinden 150 gr köfte, cheddar peyniri, yeşillik, domates, turşu, burger sos.", fiyat:350, resim:"px:34491414/pexels-photo-34491414.jpeg", kcal:760, por:"1 adet" },
+    { ad:"Chicken Burger", aciklama:"120 gr panelenmiş tavuk göğsü, yeşillik, domates, turşu, burger sos.", fiyat:300, resim:"px:15153241/pexels-photo-15153241.jpeg", kcal:620, por:"1 adet" },
+    { ad:"Klasik Hamburger", aciklama:"%100 dana etinden 150 gr köfte, yeşillik, domates, turşu, burger sos.", fiyat:330, resim:"px:6092885/pexels-photo-6092885.jpeg", kcal:680, por:"1 adet" },
+  ]},
+  { kategori:"Aperatifler", ikon:"🍟", urunler:[
+    { ad:"Patates Kızartması", fiyat:250, resim:"px:4109273/pexels-photo-4109273.jpeg", kcal:620, por:"200 g" },
+    { ad:"Sosis Tabağı", aciklama:"6 adet sosis ve patates kızartması.", fiyat:350, resim:"px:31533631/pexels-photo-31533631.jpeg", kcal:1220, por:"1 tabak" },
+    { ad:"Schnitzel", aciklama:"2 adet schnitzel ve patates kızartması.", fiyat:350, resim:"px:34636425/pexels-photo-34636425.jpeg", kcal:1090, por:"1 tabak" },
+    { ad:"Sigara Böreği", aciklama:"6 adet sigara böreği ve patates kızartması.", fiyat:350, resim:"px:15801051/pexels-photo-15801051.jpeg", kcal:920, por:"1 tabak" },
+    { ad:"Çıtır Tavuk Sepeti", aciklama:"5 adet çıtır tavuk, 2 adet soğan halkası ve patates kızartması.", fiyat:400, resim:"px:7172851/pexels-photo-7172851.jpeg", kcal:1100, por:"1 sepet" },
+    { ad:"Sıcak Kova 1", aciklama:"2 sigara böreği, 2 soğan halkası, 1 schnitzel ve patates kızartması.", fiyat:400, resim:"px:18637737/pexels-photo-18637737.jpeg", kcal:1090, por:"1 kova" },
+    { ad:"Sıcak Kova 2", aciklama:"4 sigara böreği, 4 soğan halkası, 1 paçanga böreği, 1 schnitzel ve patates kızartması.", fiyat:550, resim:"px:9738991/pexels-photo-9738991.jpeg", kcal:1640, por:"1 kova" },
+    { ad:"XL Sıcak Kova", aciklama:"4 sigara böreği, 4 soğan halkası, 2 paçanga böreği, 2 schnitzel, 2 sosis, 4 parça çıtır tavuk ve double patates kızartması.", fiyat:700, resim:"px:33037756/pexels-photo-33037756.jpeg", kcal:3290, por:"1 kova (paylaşımlık)" },
+    { ad:"Cips Tabağı", fiyat:130, resim:"px:8023869/pexels-photo-8023869.jpeg", kcal:400, por:"75 g" },
+    { ad:"Popcorn", fiyat:130, resim:"px:5603924/pexels-photo-5603924.jpeg", kcal:250, por:"50 g" },
+    { ad:"Kuruyemiş Tabağı", aciklama:"Kaju, Antep fıstığı, badem, fındık.", fiyat:500, resim:"px:38727565/pexels-photo-38727565.jpeg", kcal:620, por:"100 g" },
+  ]},
+  { kategori:"Tatlılar", ikon:"🍰", urunler:[
+    { ad:"Sufle", fiyat:200, resim:"px:26832306/pexels-photo-26832306.jpeg", kcal:450, por:"1 adet" },
+    { ad:"Fıstık Rüyası", fiyat:240, resim:"px:35237536/pexels-photo-35237536.jpeg", kcal:480, por:"1 dilim" },
+    { ad:"Spoonful", fiyat:200, resim:"px:10249461/pexels-photo-10249461.jpeg", kcal:550, por:"1 dilim" },
+    { ad:"Tiramisu", fiyat:240, resim:"px:15080938/pexels-photo-15080938.jpeg", kcal:420, por:"1 porsiyon" },
+    { ad:"San Sebastian", fiyat:240, resim:"px:6168339/pexels-photo-6168339.jpeg", kcal:490, por:"1 dilim" },
+    { ad:"Cheesecake", fiyat:240, resim:"px:4040769/pexels-photo-4040769.jpeg", kcal:480, por:"1 dilim" },
+    { ad:"Siyah Profiterol Pasta", fiyat:240, resim:"px:8738010/pexels-photo-8738010.jpeg", kcal:450, por:"1 dilim" },
+    { ad:"Beyaz Profiterol Pasta", fiyat:240, resim:"px:15204443/pexels-photo-15204443.jpeg", kcal:430, por:"1 dilim" },
+    { ad:"Magnolia", fiyat:180, resim:"px:15080943/pexels-photo-15080943.jpeg", kcal:400, por:"1 kase" },
+    { ad:"Orman Meyveli Pasta", fiyat:210, resim:"px:18292969/pexels-photo-18292969.jpeg", kcal:400, por:"1 dilim" },
+    { ad:"Lotus Cake", fiyat:240, resim:"px:10249465/pexels-photo-10249465.jpeg", kcal:540, por:"1 dilim" },
+    { ad:"Saksı", fiyat:200, resim:"px:30631338/pexels-photo-30631338.jpeg", kcal:460, por:"1 kase" },
+  ]},
+  { kategori:"Oyunlar", ikon:"🎮", not:"Her gün 14:00 – 17:00 arası PlayStation ve Bilardo'da %50 indirim!", urunler:[
+    { ad:"PlayStation", fiyat:200, resim:"px:3945659/pexels-photo-3945659.jpeg" },
+    { ad:"VIP PlayStation", fiyat:350, resim:"px:13310607/pexels-photo-13310607.jpeg" },
+    { ad:"3 Kol PlayStation", fiyat:275, resim:"px:3945657/pexels-photo-3945657.jpeg" },
+    { ad:"4 Kol PlayStation", fiyat:340, resim:"px:4522991/pexels-photo-4522991.jpeg" },
+    { ad:"Bilardo", fiyat:200, resim:"px:33491037/pexels-photo-33491037.png" },
+  ]},
+  { kategori:"Ekstralar", ikon:"✨", urunler:[
+    { ad:"Aroma", resim:"px:34164443/pexels-photo-34164443.jpeg" },
+    { ad:"Sos", resim:"px:5899677/pexels-photo-5899677.jpeg" },
+    { ad:"Baharat", resim:"px:971076/pexels-photo-971076.jpeg" },
+    { ad:"Şarj İstasyonu", resim:"px:5961044/pexels-photo-5961044.jpeg" },
+  ]},
+];
+
+/* =========================================================
+   Bundan aşağısını değiştirmene gerek yok
+   ========================================================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s).toLocaleLowerCase("tr")
+  .replace(/ı/g,"i").replace(/ğ/g,"g").replace(/ü/g,"u").replace(/ş/g,"s").replace(/ö/g,"o").replace(/ç/g,"c");
+const slug = s => "k-" + norm(s).replace(/[^a-z0-9]+/g,"-");
+const para = n => new Intl.NumberFormat("tr-TR").format(n) + " " + AYARLAR.paraBirimi;
+
+/* İstanbul saatine göre indirim saati mi? */
+function indirimSaati(){
+  const d = AYARLAR.indirim; if(!d?.aktif) return false;
+  const h = Number(new Intl.DateTimeFormat("en-GB",{hour:"2-digit",hour12:false,timeZone:"Europe/Istanbul"}).format(new Date()));
+  return h >= d.baslangic && h < d.bitis;
+}
+let indirimde = indirimSaati();
+
+function fiyatHTML(u, kat){
+  if(u.fiyat == null) return "";
+  if(u.fiyat === 0) return `<span class="price">Ücretsiz</span>`;
+  if(indirimde && kat === AYARLAR.indirim.kategori){
+    const yeni = Math.round(u.fiyat * (100 - AYARLAR.indirim.oran) / 100);
+    return `<span class="price"><s>${para(u.fiyat)}</s>${para(yeni)}</span>`;
+  }
+  return `<span class="price">${para(u.fiyat)}</span>`;
+}
+
+function vurgula(text, q){
+  const t = esc(text); if(!q) return t;
+  const n = norm(text), i = n.indexOf(q);
+  if(i < 0) return t;
+  return esc(text.slice(0,i)) + "<mark>" + esc(text.slice(i,i+q.length)) + "</mark>" + esc(text.slice(i+q.length));
+}
+
+/* =========================================================
+   ÜRÜN GÖRSELLERİ
+   Bir ürüne gerçek fotoğraf koymak için menüde: resim:"img/americano.jpg"
+   Fotoğraf yoksa ürün türüne ve aromasına göre çizim görsel kullanılır.
+   ========================================================= */
+const W = "#f6f1ea", CREAM = "#fff3df", GLASS = "rgba(255,255,255,.16)", EDGE = "rgba(255,255,255,.55)", STRAW = "#ff8a1e";
+const steam = `<path d="M19 4c-2 3 2 5 0 8M25 3c-2 3 2 5 0 8M31 4c-2 3 2 5 0 8" stroke="#fff" stroke-opacity=".45" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
+const ice = `<rect x="18" y="20" width="6" height="6" rx="1.5" fill="#fff" opacity=".55" transform="rotate(-12 21 23)"/><rect x="25" y="25" width="6" height="6" rx="1.5" fill="#fff" opacity=".45" transform="rotate(14 28 28)"/><rect x="19" y="30" width="5" height="5" rx="1.3" fill="#fff" opacity=".4"/>`;
+
+const CIZIM = {
+  espresso: c => `<ellipse cx="24" cy="38" rx="15" ry="3.6" fill="#d9d2c7"/>${steam}<path d="M13 20h22v7a9 9 0 0 1-9 9h-4a9 9 0 0 1-9-9z" fill="${W}"/><path d="M35 22h2.5a4 4 0 0 1 0 8H35" stroke="${W}" stroke-width="2.6" fill="none"/><ellipse cx="24" cy="20" rx="11" ry="2.6" fill="${c}"/>`,
+  turk: c => `<ellipse cx="24" cy="39" rx="14" ry="3.4" fill="#d9d2c7"/>${steam}<path d="M16 19h16l-1.6 15a3 3 0 0 1-3 2.6h-6.8a3 3 0 0 1-3-2.6z" fill="${W}"/><path d="M16.5 24h15" stroke="#c0392b" stroke-width="1.6"/><path d="M16.8 28h14.4" stroke="#1e6fd9" stroke-width="1.2"/><ellipse cx="24" cy="19" rx="8" ry="2" fill="${c}"/><rect x="34" y="33" width="6" height="5" rx="1.2" fill="#ff7aa2"/>`,
+  mug: c => `${steam}<path d="M13 15h20v19a6 6 0 0 1-6 6h-8a6 6 0 0 1-6-6z" fill="${W}"/><path d="M33 19h2.5a5 5 0 0 1 0 10H33" stroke="${W}" stroke-width="2.8" fill="none"/><ellipse cx="23" cy="15" rx="10" ry="2.6" fill="${c}"/><rect x="13" y="24" width="20" height="5" fill="${STRAW}" opacity=".85"/>`,
+  latte: c => `${steam}<path d="M14 14h20l-2.2 24a3 3 0 0 1-3 2.7H19.2a3 3 0 0 1-3-2.7z" fill="${W}"/><path d="M14.8 23h18.4l-.9 9H15.7z" fill="#8a5a36"/><ellipse cx="24" cy="14" rx="10" ry="2.8" fill="${c}"/><path d="M24 16.2c-1.6-1.6-3.6-.2-2.4 1.2l2.4 1.8 2.4-1.8c1.2-1.4-.8-2.8-2.4-1.2z" fill="#fff" opacity=".9"/>`,
+  cay: c => `<ellipse cx="24" cy="40" rx="12" ry="3" fill="#d9d2c7"/>${steam}<path d="M17 13h14c0 5-3.5 7-3.5 11S31 31 31 38H17c0-7 3.5-10 3.5-14S17 18 17 13z" fill="${c}" stroke="${EDGE}" stroke-width="1.4"/><path d="M17 13h14" stroke="#fff" stroke-width="1.6" opacity=".7"/>`,
+  sicak: c => `${steam}<path d="M12 16h22v18a7 7 0 0 1-7 7h-8a7 7 0 0 1-7-7z" fill="${W}"/><path d="M34 20h2a5 5 0 0 1 0 10h-2" stroke="${W}" stroke-width="2.8" fill="none"/><ellipse cx="23" cy="16" rx="11" ry="3" fill="${c}"/><circle cx="20" cy="15.5" r="1.4" fill="#fff" opacity=".8"/><circle cx="25" cy="16.5" r="1.2" fill="#fff" opacity=".7"/>`,
+  buzlu: c => `<path d="M14 10h20l-3 31H17z" fill="${GLASS}" stroke="${EDGE}" stroke-width="1.3"/><path d="M15.2 17h17.6l-2.4 23H17.6z" fill="${c}"/>${ice}<path d="M27 4l-3 30" stroke="${STRAW}" stroke-width="2.4" stroke-linecap="round"/>`,
+  kremali: c => `<path d="M15 17h18l-2.2 24H17.2z" fill="${c}" stroke="${EDGE}" stroke-width="1.3"/><path d="M13 18c0-5 3-6.5 5.5-6.5 1-3 3.5-4.5 5.5-4.5s4.5 1.5 5.5 4.5c2.5 0 5.5 1.5 5.5 6.5z" fill="${CREAM}"/><path d="M18 13c2 2 4-1 6 1s4-1 6 1" stroke="${c}" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M29 2l-3 14" stroke="${STRAW}" stroke-width="2.4" stroke-linecap="round"/><circle cx="24" cy="7.2" r="2.2" fill="#e53935"/>`,
+  smoothie: c => `<path d="M14 12h20l-2.6 29H16.6z" fill="${c}" stroke="${EDGE}" stroke-width="1.3"/><path d="M14 12h20" stroke="#fff" stroke-width="2" opacity=".6"/><circle cx="33" cy="12" r="5.5" fill="${c}" stroke="#fff" stroke-width="1.6"/><path d="M33 7v10M28 12h10" stroke="#fff" stroke-width=".9" opacity=".7"/><path d="M22 3l2 30" stroke="${STRAW}" stroke-width="2.4" stroke-linecap="round"/>`,
+  frozen: c => `<path d="M15 16h18l-2.4 25H17.4z" fill="${c}" stroke="${EDGE}" stroke-width="1.3"/><path d="M13.5 17c1.5-4 4-3 5.5-5 1.5 2.5 3.5 1 5-1 1.5 2 3.5 3.5 5 1 1.5 2 4 1 5.5 5z" fill="${c}" stroke="#fff" stroke-width="1.2" opacity=".95"/><circle cx="19" cy="25" r="1" fill="#fff" opacity=".6"/><circle cx="26" cy="30" r="1.2" fill="#fff" opacity=".5"/><circle cx="22" cy="35" r=".9" fill="#fff" opacity=".5"/><path d="M27 3l-2 26" stroke="${STRAW}" stroke-width="2.4" stroke-linecap="round"/>`,
+  kokteyl: c => `<path d="M9 11h30L24 26z" fill="${c}" stroke="${EDGE}" stroke-width="1.3"/><path d="M24 26v12" stroke="${EDGE}" stroke-width="2"/><ellipse cx="24" cy="39.5" rx="8" ry="2" fill="${EDGE}"/><path d="M12 13h24" stroke="#fff" stroke-width="1.4" opacity=".6"/><circle cx="35" cy="9" r="4.5" fill="#c6e86b" stroke="#fff" stroke-width="1.2"/><path d="M35 5v8M31 9h8" stroke="#fff" stroke-width=".8" opacity=".8"/>`,
+  mojito: c => `<path d="M15 9h18v31a2 2 0 0 1-2 2H17a2 2 0 0 1-2-2z" fill="${GLASS}" stroke="${EDGE}" stroke-width="1.3"/><path d="M16 15h16v25H16z" fill="${c}" opacity=".85"/><ellipse cx="20" cy="30" rx="3.5" ry="1.8" fill="#2e9e4f" transform="rotate(-30 20 30)"/><ellipse cx="27" cy="24" rx="3.5" ry="1.8" fill="#3ddc84" transform="rotate(25 27 24)"/><ellipse cx="23" cy="36" rx="3" ry="1.6" fill="#2e9e4f" transform="rotate(10 23 36)"/>${ice}<circle cx="15" cy="12" r="4.5" fill="#9ccc3c" stroke="#fff" stroke-width="1.2"/><path d="M28 2l-1 26" stroke="${STRAW}" stroke-width="2.4" stroke-linecap="round"/>`,
+  limonata: c => `<path d="M14 11h20l-2 30H16z" fill="${GLASS}" stroke="${EDGE}" stroke-width="1.3"/><path d="M15 16h18l-1.7 24H16.7z" fill="${c}" opacity=".9"/>${ice}<circle cx="33" cy="11" r="6" fill="#ffe14d" stroke="#fff" stroke-width="1.4"/><path d="M33 5.5v11M27.5 11h11M29 7l8 8M37 7l-8 8" stroke="#fff" stroke-width=".8" opacity=".75"/><ellipse cx="20" cy="9" rx="3" ry="1.6" fill="#3ddc84" transform="rotate(-25 20 9)"/>`,
+  meyvesuyu: c => `<path d="M15 12h18l-2.4 29H17.4z" fill="${c}" stroke="${EDGE}" stroke-width="1.3"/><path d="M15 12h18" stroke="#fff" stroke-width="2" opacity=".55"/><path d="M27 12a7 7 0 0 1 12 0z" fill="${c}" stroke="#fff" stroke-width="1.3"/><path d="M33 12l-3.5-3.5M33 12V7M33 12l3.5-3.5" stroke="#fff" stroke-width=".9"/><path d="M19 13.5h2" stroke="#fff" stroke-width="1.6" opacity=".8" stroke-linecap="round"/>`,
+  kutu: c => `<rect x="15" y="9" width="18" height="31" rx="3.5" fill="${c}"/><ellipse cx="24" cy="9.5" rx="9" ry="2.2" fill="#cfd3d8"/><ellipse cx="24" cy="39.5" rx="9" ry="1.8" fill="#aab0b6"/><path d="M15 20c4 3 14-3 18 0v6c-4-3-14 3-18 0z" fill="#fff" opacity=".85"/><rect x="17.5" y="12" width="2.2" height="24" rx="1.1" fill="#fff" opacity=".25"/>`,
+  sise: c => `<path d="M20 4h8v4c0 2 4 4 4 9v20a4 4 0 0 1-4 4h-8a4 4 0 0 1-4-4V17c0-5 4-7 4-9z" fill="${c}" stroke="${EDGE}" stroke-width="1.2"/><rect x="19.5" y="2" width="9" height="4" rx="1.2" fill="#1e88e5"/><rect x="16" y="22" width="16" height="8" fill="#fff" opacity=".8"/><rect x="18" y="12" width="2" height="22" rx="1" fill="#fff" opacity=".3"/>`,
+  ayran: c => `<path d="M15 13h18l-2 27a2 2 0 0 1-2 2H19a2 2 0 0 1-2-2z" fill="${W}"/><path d="M14 13c2-3 4-1 6-3 2 2 4 0 6-1 2 2 4 0 6 2 1 1 2 1 2 2z" fill="#fff"/><path d="M16 22h16" stroke="#1e88e5" stroke-width="2.2"/><circle cx="21" cy="11.5" r="1" fill="#e8e2d8"/><circle cx="27" cy="11" r="1.2" fill="#e8e2d8"/>`,
+  tost: c => `<path d="M6 34L30 10l10 24z" fill="#e2a85a"/><path d="M9 33.2L30 12.5l8.6 20.7z" fill="#f7d79c"/><path d="M10 32l20-18" stroke="#c0392b" stroke-width="2.4"/><path d="M12 33l19-17" stroke="${c}" stroke-width="2"/><path d="M14 34l18-16" stroke="#ffd54f" stroke-width="2"/><path d="M6 34h34" stroke="#b97a2f" stroke-width="2.5" stroke-linecap="round"/><path d="M18 26l3 3M24 20l3 3M27 28l3 3" stroke="#b97a2f" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>`,
+  burger: c => `<path d="M8 22a16 12 0 0 1 32 0z" fill="#e8a33d"/><circle cx="17" cy="15" r=".9" fill="#fff6dc"/><circle cx="23" cy="12.5" r=".9" fill="#fff6dc"/><circle cx="29" cy="15" r=".9" fill="#fff6dc"/><circle cx="25" cy="17.5" r=".9" fill="#fff6dc"/><path d="M7 23c3 2 6-1 9 1s6-1 9 1 6-1 9 1 4-1 7-2v1H7z" fill="#5cbf3a"/><path d="M8 25.5h32" stroke="#e53935" stroke-width="2.2"/><path d="M9 28l2 3h26l2-3z" fill="${c}"/><rect x="8" y="27" width="32" height="5" rx="2.5" fill="#6d3b1f"/><path d="M9 33h30a1 1 0 0 1 0 0v1a5 5 0 0 1-5 5H14a5 5 0 0 1-5-5z" fill="#e8a33d"/>`,
+  patates: c => `<path d="M17 12l2 16M21 9l1 19M25 10l0 18M29 11l-1 17M32 13l-3 15" stroke="#ffcc33" stroke-width="3.2" stroke-linecap="round"/><path d="M13 20h22l-3 20H16z" fill="#e53935"/><path d="M13 20c4 4 18 4 22 0" fill="#c62828"/><path d="M20 30l4-3 4 3" stroke="#ffd54f" stroke-width="2" fill="none" stroke-linecap="round"/>`,
+  sosis: c => `<ellipse cx="24" cy="31" rx="18" ry="8" fill="${W}"/><ellipse cx="24" cy="30" rx="14" ry="5.6" fill="#ece6dc"/><rect x="10" y="22" width="20" height="5.5" rx="2.75" fill="#c0503a" transform="rotate(-10 20 25)"/><rect x="14" y="27" width="20" height="5.5" rx="2.75" fill="#d0603f" transform="rotate(6 24 30)"/><path d="M31 23l3 9M35 23l1 9M38 25l-1 7" stroke="#ffcc33" stroke-width="2.4" stroke-linecap="round"/>`,
+  sinitzel: c => `<ellipse cx="24" cy="32" rx="18" ry="7.5" fill="${W}"/><path d="M9 28c0-7 7-12 15-11 9 0 15 5 14 11-1 5-7 6-15 6s-14-1-14-6z" fill="#d9952f"/><path d="M14 25l2 1M20 22l2 1M27 23l2 1M31 27l2 1M18 29l2 1M25 28l2 1" stroke="#a96a1d" stroke-width="1.4" stroke-linecap="round"/><path d="M32 18a6 6 0 0 1 8 6z" fill="#ffe14d" stroke="#fff" stroke-width="1"/>`,
+  borek: c => `<ellipse cx="24" cy="32" rx="18" ry="7.5" fill="${W}"/><g transform="rotate(-18 24 26)"><rect x="9" y="20" width="22" height="6" rx="3" fill="#e9b45a"/><rect x="13" y="26.5" width="22" height="6" rx="3" fill="#dda04a"/><rect x="11" y="14" width="22" height="6" rx="3" fill="#f0c271"/></g><path d="M14 19l4 2M20 25l4 2M17 30l4 2" stroke="#b97a2f" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>`,
+  tavuk: c => `<path d="M9 22h30l-4 18H13z" fill="#c62828"/><path d="M9 22h30" stroke="#8e1b1b" stroke-width="2"/><path d="M11 29h26M12 34h24" stroke="#fff" stroke-width="1.2" opacity=".35"/><circle cx="17" cy="18" r="6" fill="#d9952f"/><circle cx="27" cy="16" r="6.5" fill="#e3a43c"/><circle cx="33" cy="20" r="4.5" fill="#cf8a2a"/><path d="M14 16l2 1M25 13l2 1M29 18l2 1M18 20l2 1" stroke="#a96a1d" stroke-width="1.3" stroke-linecap="round"/>`,
+  kova: c => `<path d="M17 14l2-8M22 13V5M27 13l1-8M31 14l3-7" stroke="#ffcc33" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="14" r="4.5" fill="#d9952f"/><rect x="25" y="9" width="9" height="5" rx="2.5" fill="#e9b45a" transform="rotate(25 29 11)"/><path d="M10 16h28l-4 25H14z" fill="${STRAW}"/><path d="M10 16h28" stroke="#c75f00" stroke-width="2.4"/><text x="24" y="33" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="8" fill="#1d0e00">BOB</text>`,
+  cips: c => `<path d="M6 26h36a18 13 0 0 1-36 0z" fill="#7a4a2a"/><path d="M6 26h36" stroke="#5d3720" stroke-width="2"/><ellipse cx="16" cy="23" rx="7" ry="4.5" fill="#ffd54f" transform="rotate(-20 16 23)"/><ellipse cx="27" cy="21" rx="7.5" ry="4.5" fill="#ffca28" transform="rotate(15 27 21)"/><ellipse cx="34" cy="24" rx="6" ry="4" fill="#ffd54f" transform="rotate(-10 34 24)"/><ellipse cx="22" cy="25" rx="6" ry="3.5" fill="#ffe082"/>`,
+  misir: c => `<circle cx="18" cy="13" r="5" fill="#fff8e1"/><circle cx="25" cy="10" r="5.5" fill="#fffde7"/><circle cx="31" cy="14" r="5" fill="#fff8e1"/><circle cx="22" cy="16" r="4.5" fill="#ffecb3"/><circle cx="28" cy="17" r="4" fill="#fffde7"/><path d="M13 17h22l-3 24H16z" fill="#fff"/><path d="M17 17l1.2 24M22 17l.4 24M26 17l-.4 24M31 17l-1.2 24" stroke="#e53935" stroke-width="2.6"/>`,
+  kuruyemis: c => `<path d="M6 26h36a18 13 0 0 1-36 0z" fill="${W}"/><ellipse cx="15" cy="23" rx="4" ry="2.6" fill="#c8915a" transform="rotate(-30 15 23)"/><ellipse cx="22" cy="21" rx="3.4" ry="3.4" fill="#a0652e"/><path d="M28 18c4 0 6 3 5 6-2 0-5-1-5-6z" fill="#9ccc65"/><ellipse cx="33" cy="23" rx="4" ry="2.4" fill="#d7a86e" transform="rotate(20 33 23)"/><ellipse cx="19" cy="26" rx="4" ry="2.4" fill="#b8783e"/><ellipse cx="27" cy="25.5" rx="3.6" ry="2.2" fill="#e1b07a" transform="rotate(-15 27 25.5)"/>`,
+  pasta: c => `<ellipse cx="24" cy="40" rx="17" ry="3.2" fill="#d9d2c7"/><path d="M8 38V24l30-9v23z" fill="#f3e3c3"/><path d="M8 24l30-9 2 1.5L10 25.5z" fill="${c}"/><path d="M8 24v14" stroke="#e6d2ab" stroke-width="1"/><path d="M8 29.5l30-6M8 33.5l30-6" stroke="${c}" stroke-width="2.2" opacity=".85"/><path d="M38 15v23h2V16.5z" fill="#e6cfa4"/><circle cx="26" cy="15" r="2.6" fill="#e53935"/>`,
+  profiterol: c => `<ellipse cx="24" cy="37" rx="18" ry="5" fill="${W}"/><circle cx="17" cy="29" r="6.5" fill="#e3b06a"/><circle cx="31" cy="29" r="6.5" fill="#e3b06a"/><circle cx="24" cy="22" r="7" fill="#e9bb78"/><path d="M10 28c2-3 5-1 7-3 2 3 5 1 7-1 2 3 5 2 7 0 2 2 5 1 7 3-2 6-6 2-8 6-2-3-5 1-6-2-2 3-5 1-6 2-2-3-6 1-8-5z" fill="${c}"/><path d="M17 19c2-3 5-2 7-4 3 2 5 1 7 4-2 3-5 1-7 3-2-2-5 0-7-3z" fill="${c}"/>`,
+  kup: c => `<path d="M13 12h22l-2 28a2 2 0 0 1-2 2H17a2 2 0 0 1-2-2z" fill="${GLASS}" stroke="${EDGE}" stroke-width="1.3"/><path d="M14.3 30h19.4l-.7 10H15z" fill="#e0c08a"/><path d="M14.7 24h18.6l-.4 6H15.2z" fill="${CREAM}"/><path d="M15 18h18l-.3 6H15.3z" fill="${c}"/><path d="M13.5 14c3-2 6 0 10.5-1.5S31 15 34.5 14l-.3 4H13.8z" fill="${CREAM}"/><circle cx="20" cy="12" r="2.2" fill="#e53935"/><circle cx="27" cy="11.5" r="1.6" fill="#ffd54f"/>`,
+  sufle: c => `<path d="M10 22h28l-2 16a3 3 0 0 1-3 2.6H15a3 3 0 0 1-3-2.6z" fill="${W}"/><path d="M11 26h26M11.6 31h24.8M12.2 36h23.6" stroke="#e6ded2" stroke-width="1.4"/><path d="M10 22c0-6 6-10 14-10s14 4 14 10z" fill="#4b2a1a"/><path d="M15 16c3 1 4-1 6 0M24 14c3 1 4-1 6 1M19 19c2 1 4 0 6 1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".85"/><circle cx="31" cy="10" r="2.4" fill="#e53935"/>`,
+  oyun: c => `<path d="M14 15h20a9 9 0 0 1 8.4 12.2l-2.6 7a5 5 0 0 1-8.6 1.2L28.5 32h-9l-2.7 3.4a5 5 0 0 1-8.6-1.2l-2.6-7A9 9 0 0 1 14 15z" fill="${c}"/><path d="M14 20v7M10.5 23.5h7" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="32" cy="21" r="1.9" fill="#ff5252"/><circle cx="36" cy="24.5" r="1.9" fill="#4fc3f7"/><circle cx="28.5" cy="24.5" r="1.9" fill="#66bb6a"/><circle cx="32" cy="28" r="1.9" fill="#ffd54f"/>`,
+  bilardo: c => `<circle cx="24" cy="24" r="15" fill="#151515"/><circle cx="24" cy="24" r="7" fill="#fff"/><text x="24" y="27.6" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="10" fill="#111">8</text><path d="M14 15a12 12 0 0 1 7-4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".45" fill="none"/>`,
+  sarj: c => `<rect x="14" y="8" width="20" height="32" rx="4" fill="${W}"/><rect x="16.5" y="12" width="15" height="24" rx="2" fill="#2b2730"/><path d="M26 15l-6 9h4l-2 8 6-10h-4z" fill="${STRAW}"/>`,
+  ekstra: c => `<path d="M24 6l3.2 10.8L38 20l-10.8 3.2L24 34l-3.2-10.8L10 20l10.8-3.2z" fill="${STRAW}"/><path d="M36 30l1.4 4.6L42 36l-4.6 1.4L36 42l-1.4-4.6L30 36l4.6-1.4z" fill="#ffd54f"/><circle cx="12" cy="34" r="2.2" fill="#fff" opacity=".7"/>`,
+};
+
+/* Aroma → renk */
+const RENKLER = [
+  [/cilek|strawberry/,"#ff4f7b"], [/karpuz/,"#ff5a5f"], [/kavun/,"#ffb36b"], [/ananas/,"#ffd23f"],
+  [/mango/,"#ffb020"], [/yesil elma|elmali/,"#8bd450"], [/orman|wild berry|berry hibiscus|cool berry/,"#9c3d8f"],
+  [/muz/,"#ffd84d"], [/vanilya/,"#f3dca8"], [/karamel|caramel|lotus/,"#c8792a"], [/oreo/,"#3b3b3b"],
+  [/brownie|snickers|nutella/,"#5a3220"], [/cocostar|coco/,"#7a4a2a"], [/white mocha|beyaz/,"#f1e4d0"],
+  [/mocha|cikolata|siyah/,"#5b301b"], [/nartakal/,"#f4511e"], [/nar/,"#c2185b"], [/portakal|fanta/,"#ff9800"],
+  [/kivi/,"#8bc34a"], [/karadut/,"#5e1f6b"], [/nane|mojito|cool lime|forest/,"#7fd47a"],
+  [/blue|space|cosmos/,"#2f8cff"], [/red velvet|cosmopolitan|redbull twist/,"#d81b60"], [/rio|sun garden|golden/,"#ffb300"],
+  [/fistik/,"#8bc34a"], [/san sebastian/,"#8a4b1f"], [/tiramisu/,"#6d4c3d"], [/cheesecake/,"#e85a6a"],
+  [/limon/,"#ffe066"], [/salep/,"#f3e3c8"], [/menengic/,"#6b5a2a"],
+];
+const renkBul = (ad, varsayilan) => { for(const [r,c] of RENKLER) if(r.test(ad)) return c; return varsayilan; };
+
+function gorselTur(u, kat){
+  const a = norm(u.ad), k = norm(kat);
+  const r = (tur, renk) => ({ tur, renk: renk || renkBul(a, "#6b4226") });
+  switch(k){
+    case "kahveler":
+      if(/espresso/.test(a)) return r("espresso","#3e2312");
+      if(/latte|cappuccino|flat|cortado|mocha|macchiato/.test(a)) return r("latte", renkBul(a,"#c9a27a"));
+      return r("mug", /sutlu/.test(a) ? "#a8774f" : "#3e2312");
+    case "turk kahvesi": return r("turk", /sutlu/.test(a) ? "#8a6040" : /menengic/.test(a) ? "#6b5a2a" : "#2e1a0e");
+    case "sicak icecekler":
+      if(/cay/.test(a) && !/chai/.test(a)) return r(/fincan/.test(a) ? "espresso" : "cay", /bitki/.test(a) ? "#c8a832" : "#b4361e");
+      if(/oralet/.test(a)) return r("cay","#ff9800");
+      if(/kivi|karadut/.test(a)) return r("cay");
+      if(/cikolata/.test(a)) return r("sicak", /beyaz/.test(a) ? "#f1e4d0" : "#5b301b");
+      if(/chai/.test(a)) return r("latte","#c99a62");
+      return r("sicak", /salep/.test(a) ? "#f3e3c8" : renkBul(a,"#f6efe4"));
+    case "soguk kahveler": return r("buzlu", /americano|filter/.test(a) ? "#3e2312" : renkBul(a,"#b98a5e"));
+    case "frappeler": return r("kremali", renkBul(a,"#a8774f"));
+    case "milkshakeler": return r("kremali", renkBul(a,"#f3dca8"));
+    case "smoothieler": return r("smoothie");
+    case "frozenlar": return r("frozen");
+    case "kokteyller": return r("kokteyl", renkBul(a,"#ff6f61"));
+    case "mojitolar": return r("mojito", /cilek|berry/.test(a) ? renkBul(a) : /redbull/.test(a) ? "#d81b60" : "#c9f2b4");
+    case "limonatalar": return r("limonata", /klasik/.test(a) ? "#ffe066" : renkBul(a,"#ffe066"));
+    case "soguk cikolata": return r("kremali", /beyaz/.test(a) ? "#f1e4d0" : /muz/.test(a) ? "#c9a24a" : /cilek/.test(a) ? "#c45a6a" : "#5b301b");
+    case "vitamin bar": return /sut/.test(a) ? r("kremali","#ffe08a") : r("meyvesuyu");
+    case "soguk icecekler":
+      if(/ayran/.test(a)) return r("ayran");
+      if(/^su$/.test(a)) return r("sise","rgba(120,190,255,.35)");
+      if(/soda/.test(a)) return r("sise", /meyveli/.test(a) ? "#ff7aa2" : "rgba(200,230,255,.45)");
+      if(/meyve suyu/.test(a)) return r("meyvesuyu","#ff9800");
+      if(/churchill/.test(a)) return r("limonata","#f6f3d0");
+      return r("kutu", /cola/.test(a) ? "#d50000" : /fanta/.test(a) ? "#ff8f00" : /sprite/.test(a) ? "#2e9e4f" :
+        /ice tea/.test(a) ? "#c77d2a" : /red ?bull/.test(a) ? "#1f3a93" : /monster/.test(a) ? "#1b1b1b" :
+        /black/.test(a) ? "#2b2b2b" : /gazoz/.test(a) ? "#e53935" : "#888");
+    case "tostlar": return r("tost", /light/.test(a) ? "#fff" : "#7a3b1d");
+    case "hamburgerler": return r("burger", /cheese|bob/.test(a) ? "#ffc107" : /chicken/.test(a) ? "#ffcf6e" : "#ffc107");
+    case "aperatifler":
+      if(/kova/.test(a)) return r("kova");
+      if(/patates/.test(a)) return r("patates");
+      if(/sosis/.test(a)) return r("sosis");
+      if(/schnitzel/.test(a)) return r("sinitzel");
+      if(/borek/.test(a)) return r("borek");
+      if(/tavuk/.test(a)) return r("tavuk");
+      if(/cips/.test(a)) return r("cips");
+      if(/popcorn/.test(a)) return r("misir");
+      return r("kuruyemis");
+    case "tatlilar":
+      if(/sufle/.test(a)) return r("sufle");
+      if(/profiterol/.test(a)) return r("profiterol", /beyaz/.test(a) ? "#f6ecdc" : "#3b1f12");
+      if(/magnolia|spoonful|saksi/.test(a)) return r("kup", /spoonful|saksi/.test(a) ? "#4b2a1a" : "#f3dca8");
+      return r("pasta", renkBul(a,"#c8792a"));
+    case "oyunlar":
+      if(/bilardo/.test(a)) return r("bilardo");
+      return r("oyun", /vip/.test(a) ? "#c9a227" : "#2b2d42");
+    default:
+      return r(/sarj/.test(a) ? "sarj" : "ekstra");
+  }
+}
+
+function hexRgba(c, al){
+  if(!c.startsWith("#")) return `rgba(255,255,255,${al})`;
+  const n = parseInt(c.slice(1),16);
+  return `rgba(${n>>16},${(n>>8)&255},${n&255},${al})`;
+}
+
+function gorselHTML(u, kat){
+  if(!AYARLAR.gorseller) return "";
+  const { tur, renk } = gorselTur(u, kat);
+  const ciz = CIZIM[tur] || CIZIM.ekstra;
+  const yedek = `<svg viewBox="0 0 48 48">${ciz(renk)}</svg>`;
+  if(u.resim){
+    const fx = (w) => /^px:/.test(u.resim)
+      ? `https://images.pexels.com/photos/${u.resim.slice(3)}?auto=compress&cs=tinysrgb&w=${w}&h=${w}&fit=crop`
+      : /^photo-/.test(u.resim)
+        ? `https://images.unsplash.com/${u.resim}?w=${w}&h=${w}&fit=crop&auto=format&q=75`
+        : u.resim;
+    const src = fx(220), big = fx(900);
+    return `<button type="button" class="thumb photo" style="--tint:${hexRgba(renk,.38)}" data-big="${esc(big)}" data-ad="${esc(u.ad)}" aria-label="${esc(u.ad)} fotoğrafını büyüt">${yedek}<img src="${esc(src)}" alt="${esc(u.ad)}" loading="lazy" decoding="async" onload="this.classList.add('ok')" onerror="this.remove()"></button>`;
+  }
+  return `<div class="thumb" style="--tint:${hexRgba(renk,.38)}" aria-hidden="true">${yedek}</div>`;
+}
+
+/* ---------- Üst kısım ---------- */
+$("#tagline").textContent = AYARLAR.slogan;
+if(AYARLAR.indirim?.aktif){
+  $("#promo-title").textContent = AYARLAR.indirim.aciklama;
+  $("#promo-sub").textContent = AYARLAR.indirim.baslik;
+  $("#promo").classList.toggle("is-live", indirimde);
+} else $("#promo").remove();
+
+$("#quick").innerHTML = HIZLI.map(h =>
+  `<button class="q" type="button" data-id="${slug(h.hedef)}"><span>${h.ikon}</span><em>${esc(h.ad)}</em></button>`).join("");
+
+$("#tabs").innerHTML = MENU.map((k,i)=>
+  `<button class="tab${i===0?" active":""}" type="button" data-id="${slug(k.kategori)}">${k.ikon||""} ${esc(k.kategori)}</button>`).join("");
+
+/* ---------- Menü ---------- */
+function render(filtre=""){
+  const q = norm(filtre.trim());
+  let toplam = 0;
+  $("#menu").innerHTML = MENU.map(k => {
+    const list = k.urunler.filter(u => !q || norm(u.ad + " " + (u.aciklama||"") + " " + k.kategori).includes(q));
+    toplam += list.length;
+    if(!list.length) return "";
+    return `<section class="cat" id="${slug(k.kategori)}">
+      <div class="cat-head">
+        <div class="cat-ico">${k.ikon||"•"}</div>
+        <h2 class="cat-title">${esc(k.kategori)}</h2>
+        <span class="cat-count">${list.length} ürün</span>
+      </div>
+      ${k.not && !q ? `<div class="cat-note">⏰ <span>${esc(k.not)}</span></div>` : ""}
+      <div class="list">
+        ${list.map(u => `<div class="row">
+          ${gorselHTML(u,k.kategori)}
+          <div class="row-body">
+          <div class="row-top">
+            <span class="name">${vurgula(u.ad,q)}${(u.etiket||[]).map(e=>`<span class="tag">${esc(e)}</span>`).join("")}</span>
+            ${u.fiyat != null ? `<span class="dots"></span>${fiyatHTML(u,k.kategori)}` : ""}
+          </div>
+          ${u.aciklama ? `<p class="desc">${vurgula(u.aciklama,q)}</p>` : ""}
+          ${u.kcal != null ? `<p class="kcal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3-1-3 0-6 1-9.5z"/></svg>${u.etiket_kcal ? "" : "≈ "}${u.kcal} kcal${u.por ? `<span>· ${esc(u.por)}</span>` : ""}</p>` : ""}
+          </div>
+        </div>`).join("")}
+      </div>
+    </section>`;
+  }).join("");
+  $("#empty").style.display = toplam ? "none" : "block";
+  $("#tabs").style.display = q ? "none" : "flex";
+  $("#resultInfo").style.display = q ? "block" : "none";
+  $("#resultInfo").textContent = toplam ? `${toplam} sonuç bulundu` : "";
+  $("#searchBox").classList.toggle("has-text", !!filtre);
+  window.fxAfterRender && fxAfterRender();
+}
+
+/* ---------- Büyük fotoğraf ---------- */
+$("#menu").addEventListener("click", e => {
+  const t = e.target.closest(".thumb.photo"); if(!t) return;
+  const row = t.closest(".row");
+  $("#lbImg").src = t.dataset.big; $("#lbImg").alt = t.dataset.ad;
+  $("#lbTxt").innerHTML = esc(t.dataset.ad) + `<span>${row.querySelector(".price")?.lastChild?.textContent || ""}</span>`;
+  $("#lb").classList.add("show");
+});
+const lbKapat = () => { $("#lb").classList.remove("show"); $("#lbImg").removeAttribute("src"); };
+$("#lb").addEventListener("click", e => { if(e.target.id !== "lbImg") lbKapat(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") lbKapat(); });
+
+/* ---------- Gezinme ---------- */
+let kilit = false;
+function git(id){
+  if($("#q").value){ $("#q").value = ""; render(); }
+  const el = document.getElementById(id); if(!el) return;
+  kilit = true; isaretle(id);
+  el.scrollIntoView({behavior:"smooth"});
+  clearTimeout(git.t); git.t = setTimeout(()=> kilit = false, 900);
+}
+function isaretle(id){
+  document.querySelectorAll(".tab").forEach(t => {
+    const on = t.dataset.id === id;
+    if(on && !t.classList.contains("active")){
+      const bar = $("#tabs");
+      bar.scrollTo({left: t.offsetLeft - bar.clientWidth/2 + t.clientWidth/2});
+    }
+    t.classList.toggle("active", on);
+  });
+  window.fxMoveInd && fxMoveInd();
+}
+$("#tabs").addEventListener("click", e => { const b = e.target.closest(".tab"); if(b) git(b.dataset.id); });
+$("#quick").addEventListener("click", e => { const b = e.target.closest(".q"); if(b) git(b.dataset.id); });
+
+let ara;
+$("#q").addEventListener("input", e => { clearTimeout(ara); ara = setTimeout(()=>render(e.target.value), 80); });
+$("#q").addEventListener("keydown", e => { if(e.key === "Enter") e.target.blur(); });
+$("#clear").addEventListener("click", () => { $("#q").value = ""; render(); $("#q").focus(); });
+
+let raf = 0;
+window.addEventListener("scroll", () => {
+  if(raf) return;
+  raf = requestAnimationFrame(() => {
+    raf = 0;
+    $("#top").classList.toggle("show", scrollY > 900);
+    if(kilit || $("#q").value) return;
+    const sinir = $("#sticky").offsetHeight + 24;
+    let aktif = null;
+    document.querySelectorAll("section.cat").forEach(s => { if(s.getBoundingClientRect().top <= sinir) aktif = s.id; });
+    if(aktif) isaretle(aktif);
+  });
+}, {passive:true});
+$("#top").addEventListener("click", () => scrollTo({top:0, behavior:"smooth"}));
+
+/* ---------- Alt kısım ---------- */
+const A = AYARLAR;
+const linkler = [
+  A.instagram   && `<a class="btn primary" href="${esc(A.instagram)}" target="_blank" rel="noopener">📸 Instagram</a>`,
+  A.googleYorum && `<a class="btn" href="${esc(A.googleYorum)}" target="_blank" rel="noopener">⭐ Bizi Değerlendir</a>`,
+].filter(Boolean);
+if(linkler.length) $("#links").innerHTML = linkler.join(""); else $("#links").remove();
+
+if(A.wifiAdi){
+  $("#wifi").innerHTML = `<span>📶 <b>${esc(A.wifiAdi)}</b>${A.wifiSifre ? ` · Şifre: <b>${esc(A.wifiSifre)}</b>` : ""}</span>
+    ${A.wifiSifre ? `<button class="copy" type="button" id="copyWifi">Kopyala</button>` : ""}`;
+  $("#copyWifi")?.addEventListener("click", async () => {
+    try{ await navigator.clipboard.writeText(A.wifiSifre); toast("Wi-Fi şifresi kopyalandı ✓"); }
+    catch{ toast("Şifre: " + A.wifiSifre); }
+  });
+} else $("#wifi").remove();
+
+const bilgi = [
+  A.adres && (A.konum ? `📍 <a href="${esc(A.konum)}" target="_blank" rel="noopener" style="color:inherit">${esc(A.adres)}</a>` : `📍 ${esc(A.adres)}`),
+  A.saatler && `🕒 ${esc(A.saatler)}`,
+  A.telefon && `📞 <a href="tel:${esc(A.telefon.replace(/\s/g,""))}" style="color:inherit">${esc(A.telefon)}</a>`,
+].filter(Boolean);
+if(bilgi.length) $("#info").innerHTML = bilgi.join("<br>"); else $("#info").remove();
+
+$("#legal").innerHTML = `Fiyatlarımıza KDV dahildir. Ürün görselleri temsilidir.<br>Kalori değerleri: hazır içeceklerde üretici etiket değeridir; diğer ürünlerde standart tarif ve belirtilen porsiyona göre hesaplanmış yaklaşık değerdir (≈). Çay ve kahveler şekersiz hesaplanmıştır. Yetişkinlerin günlük ortalama enerji ihtiyacı 2000 kcal'dir.${A.guncelleme ? `<br>Son güncelleme: ${esc(A.guncelleme)}` : ""}`;
+
+function toast(m){
+  const t = $("#toast"); t.textContent = m; t.classList.add("show");
+  clearTimeout(toast.t); toast.t = setTimeout(()=>t.classList.remove("show"), 1800);
+}
+
+/* İndirim saati başlayınca/bitince sayfayı yenilemeden güncelle */
+setInterval(() => {
+  const y = indirimSaati();
+  if(y !== indirimde){ indirimde = y; $("#promo")?.classList.toggle("is-live", y); render($("#q").value); }
+}, 60000);
+
+render();
+
+/* ================= EFEKTLER ================= */
+(function(){
+  const azHareket = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Açılış ekranı: oturumda bir kez */
+  const sp = document.getElementById("splash");
+  let gosterildi = false;
+  try{ gosterildi = sessionStorage.getItem("bob_splash") === "1"; sessionStorage.setItem("bob_splash","1"); }catch(e){}
+  const basla = () => document.body.classList.add("ready");
+  if(sp){
+    if(gosterildi || azHareket){ sp.remove(); basla(); }
+    else{
+      const kapat = () => { sp.classList.add("hide"); basla(); setTimeout(()=>sp.remove(), 600); };
+      const t0 = performance.now();
+      const bitir = () => setTimeout(kapat, Math.max(0, 1150 - (performance.now()-t0)));
+      if(document.readyState === "complete") bitir(); else addEventListener("load", bitir, {once:true});
+      setTimeout(kapat, 2600); // en geç
+    }
+  } else basla();
+
+  if(azHareket) return;
+  document.body.classList.add("fx");
+
+  /* Kategori bölümleri görününce satırlar kayarak gelsin */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  }), {rootMargin:"0px 0px -8% 0px", threshold:0.04});
+  window.fxAfterRender = () => {
+    document.querySelectorAll("section.cat").forEach(sec => {
+      sec.querySelectorAll(".row").forEach((r,i) => r.style.setProperty("--i", i));
+      if($("#q").value) sec.classList.add("in"); else io.observe(sec);
+    });
+  };
+  fxAfterRender();
+
+  /* Kayan kategori göstergesi */
+  const tabs = $("#tabs");
+  const ind = document.createElement("span"); ind.className = "tab-ind"; tabs.prepend(ind); tabs.classList.add("has-ind");
+  window.fxMoveInd = () => {
+    const a = tabs.querySelector(".tab.active"); if(!a) return;
+    ind.style.width = a.offsetWidth + "px";
+    ind.style.transform = `translateX(${a.offsetLeft}px)`;
+    ind.classList.add("on");
+  };
+  requestAnimationFrame(fxMoveInd);
+  addEventListener("resize", fxMoveInd);
+  document.fonts?.ready.then(fxMoveInd);
+
+  /* Kaydırma ilerleme çubuğu */
+  const pr = document.createElement("div"); pr.className = "progress"; $("#sticky").appendChild(pr);
+  let r2 = 0;
+  addEventListener("scroll", () => {
+    if(r2) return; r2 = requestAnimationFrame(() => {
+      r2 = 0; const m = document.documentElement.scrollHeight - innerHeight;
+      pr.style.transform = `scaleX(${m > 0 ? Math.min(1, scrollY/m) : 0})`;
+    });
+  }, {passive:true});
+
+  /* İmleci takip eden parıltı + dokunma dalgası */
+  const menu = $("#menu");
+  menu.addEventListener("pointermove", e => {
+    const r = e.target.closest(".row"); if(!r) return;
+    const b = r.getBoundingClientRect();
+    r.style.setProperty("--mx", (e.clientX-b.left)+"px"); r.style.setProperty("--my", (e.clientY-b.top)+"px");
+  }, {passive:true});
+  menu.addEventListener("pointerdown", e => {
+    const r = e.target.closest(".row"); if(!r) return;
+    const b = r.getBoundingClientRect(), d = Math.max(b.width, b.height) * 2;
+    const s = document.createElement("span"); s.className = "ripple";
+    s.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX-b.left-d/2}px;top:${e.clientY-b.top-d/2}px`;
+    r.appendChild(s); setTimeout(() => s.remove(), 650);
+  }, {passive:true});
+
+  /* Hızlı erişim kutusuna dokununca ikon zıplasın */
+  $("#quick").addEventListener("click", e => {
+    const q = e.target.closest(".q"); if(!q) return;
+    q.classList.add("pop"); setTimeout(() => q.classList.remove("pop"), 350);
+  });
+})();
+</script>
+</body>
+</html>
